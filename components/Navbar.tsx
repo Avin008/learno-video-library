@@ -10,9 +10,9 @@ const Navbar = (): React.ReactElement => {
   return (
     <div className="fixed left-0 right-0 top-0 z-20 flex h-16 items-center justify-between border-b-2 border-gray-700 bg-gray-800 px-10 shadow-md">
       <div className="flex items-center">
-        <span className="flex items-center text-2xl font-extrabold text-[#6366F1]">
+        <span className="flex items-center text-2xl font-extrabold">
           <span className="text-4xl"></span>
-          <div className="text-3xl">Bro.</div>
+          <div className="text-3xl text-primary">Bro.</div>
         </span>
       </div>
 
@@ -22,7 +22,7 @@ const Navbar = (): React.ReactElement => {
       >
         <Link href="/login">
           <li
-            className={`rounded-md bg-[#6366F1] px-3 py-2 text-sm font-medium text-white hover:cursor-pointer hover:bg-opacity-75 hover:text-white ${
+            className={`rounded-md bg-primary px-3 py-2 text-sm font-medium text-white hover:cursor-pointer hover:bg-opacity-75 hover:text-white ${
               router.pathname === "/login" &&
               "bg-light-primary font-medium text-white"
             }`}
@@ -31,7 +31,7 @@ const Navbar = (): React.ReactElement => {
           </li>
         </Link>
         <li
-          className="rounded-md px-3 py-2 text-sm font-medium text-gray-300  transition-all hover:cursor-pointer hover:bg-gray-700 hover:text-white sm:fixed sm:top-3 sm:right-5 md:static"
+          className="rounded-md px-3 py-2 text-sm font-medium text-gray-300  transition-all hover:cursor-pointer hover:bg-hover hover:text-white sm:fixed sm:top-3 sm:right-5 md:static"
           onClick={() => setDarkMode((darkMode) => !darkMode)}
         >
           {darkMode ? (

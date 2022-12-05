@@ -11,6 +11,13 @@ module.exports = {
       fontFamily: {
         sans: ["var(--font-inter)", ...fontFamily.sans],
       },
+      colors: {
+        primary: "#6366F1",
+        secondary: "",
+        background: "#2A3441",
+        text: "",
+        hover: "#2A3441",
+      },
     },
   },
   plugins: [],
