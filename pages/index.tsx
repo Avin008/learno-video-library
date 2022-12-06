@@ -19,7 +19,7 @@ export default function Home() {
           {[
             {
               img: "https://i.ytimg.com/vi/Bw9P_ZXWDJU/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAdTmhOgRc7_yovZ_4EQsFrFMVAmw",
-              name: "How to start with React",
+              name: "Yuval Noah Harari | 21 Lessons for the 21st Century",
               channel:
                 "https://yt3.ggpht.com/ytc/AKedOLQDTf95gNBGbmSrs0I54WEsOqOw9oddIblPuQnj1w=s88-c-k-c0x00ffffff-no-rj",
             },

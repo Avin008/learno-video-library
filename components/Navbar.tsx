@@ -12,7 +12,7 @@ const Navbar = (): React.ReactElement => {
       <div className="flex items-center">
         <span className="flex items-center text-2xl font-extrabold">
           <span className="text-4xl"></span>
-          <div className="text-3xl text-primary">Bro.</div>
+          <div className="text-3xl text-primary">Learno.</div>
         </span>
       </div>
 
