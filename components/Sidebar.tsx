@@ -8,7 +8,7 @@ import {
 
 const SideBar = (): React.ReactElement => {
   return (
-    <ul className="flex flex-col space-y-3">
+    <ul className="sticky top-16 flex flex-col space-y-3">
       <li className="flex items-center gap-3 bg-primary p-4 text-white hover:cursor-pointer hover:bg-hover">
         <MdHome size={20} /> HOME
       </li>
