@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import SideBar from "../components/Sidebar";
+import VideoCard from "../components/VideoCard";
 
 export default function Home() {
   return (
@@ -44,9 +45,7 @@ export default function Home() {
               img: "https://i.ytimg.com/vi/qj20o5UQ3qI/maxresdefault.jpg",
             },
           ].map((x) => (
-            <div className="relative h-52 border border-gray-500">
-              <Image className="" src={x.img} alt="" fill />
-            </div>
+            <VideoCard data={x} />
           ))}
         </div>
       </main>
