@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { MdOutlineDarkMode, MdLightMode } from "react-icons/md";
+import { MdOutlineDarkMode, MdLightMode, MdOutlineMenu } from "react-icons/md";
 const Navbar = (): React.ReactElement => {
   const [darkMode, setDarkMode] = useState<boolean>(false);
 
