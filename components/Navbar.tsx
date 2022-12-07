@@ -8,10 +8,12 @@ const Navbar = (): React.ReactElement => {
   const router = useRouter();
 
   return (
-    <div className="fixed left-0 right-0 top-0 z-20 flex h-16 items-center justify-between border-b-2 border-gray-700 bg-gray-800 px-10 shadow-md">
+    <div className="fixed left-0 right-0 top-0 z-20 flex h-16 items-center justify-between border-b-2 border-gray-700 bg-gray-800 px-8 shadow-md">
       <div className="flex items-center">
-        <span className="flex items-center text-2xl font-extrabold">
-          <span className="text-4xl"></span>
+        <span className="flex items-center gap-3 text-2xl font-extrabold">
+          <span className="cursor-pointer rounded-md p-1 text-2xl transition-all hover:bg-hover sm:block lg:hidden">
+            <MdOutlineMenu color="white" />
+          </span>
           <div className="text-3xl text-primary">Learno.</div>
         </span>
       </div>

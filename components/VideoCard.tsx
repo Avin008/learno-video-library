@@ -1,28 +1,41 @@
 import Image from "next/image";
 import { MdMoreVert } from "react-icons/md";
 
-const VideoCard = ({
-  data,
-}: {
-  data: { img: string; name: string; channel: string };
-}): React.ReactElement => {
+type Props = {
+  _id: string;
+  title: string;
+  thumbnail: string;
+  channelIcon: string;
+  channelName: string;
+  videoLink: string;
+  category: string;
+};
+
+const VideoCard = ({ data }: { data: Props }): React.ReactElement => {
   return (
     <div className="h-full w-full ">
       <div className="relative aspect-video hover:cursor-pointer">
-        <Image className="" src={data.img} alt="" fill />
+        <Image className="" src={data.thumbnail} alt="" fill />
       </div>
       <div className="grid grid-cols-8 pt-3">
         <div className="col-span-2 flex justify-center">
           <div className="relative h-10 w-10">
-            <Image className="rounded-full" src={data.channel} alt="" fill />
+            <Image
+              className="rounded-full"
+              src={data.channelIcon}
+              alt=""
+              fill
+            />
           </div>
         </div>
         <div className="col-span-5 space-y-1">
           <h1 className="text-sm font-semibold leading-5 text-gray-300">
-            {data.name.length > 50 ? `${data.name.slice(0, 50)}..` : data.name}
+            {data.title.length > 50
+              ? `${data.title.slice(0, 50)}..`
+              : data.title}
           </h1>
-          <h2 className="text-base font-semibold text-gray-400">
-            Channel Name
+          <h2 className="text-sm font-semibold text-gray-400">
+            {data.channelName}
           </h2>
         </div>
         <div className="col-span-1 flex items-start justify-end bg-gray-800">
