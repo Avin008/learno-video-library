@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { MdMoreVert } from "react-icons/md";
+import VideoCardMenu from "./VideoCardMenu";
+import { useState } from "react";
 
 type Props = {
   _id: string;
@@ -12,10 +14,17 @@ type Props = {
 };
 
 const VideoCard = ({ data }: { data: Props }): React.ReactElement => {
+  const [showVideoOptions, setShowVideoOptions] = useState<boolean>(false);
+
+  const toggleVideoOptions = (): void => {
+    setShowVideoOptions((prev) => !prev);
+  };
+
   return (
     <div className="h-full w-full ">
       <div className="relative aspect-video hover:cursor-pointer">
         <Image className="" src={data.thumbnail} alt="" fill />
+        {showVideoOptions && <VideoCardMenu />}
       </div>
       <div className="grid grid-cols-8 pt-3">
         <div className="col-span-2 flex justify-center">
@@ -39,7 +48,10 @@ const VideoCard = ({ data }: { data: Props }): React.ReactElement => {
           </h2>
         </div>
         <div className="col-span-1 flex items-start justify-end bg-gray-800">
-          <span className="rounded-full p-1 hover:cursor-pointer hover:bg-hover">
+          <span
+            className="rounded-full p-1 hover:cursor-pointer hover:bg-hover"
+            onClick={toggleVideoOptions}
+          >
             <MdMoreVert className="rounded-full text-gray-200" size={25} />
           </span>
         </div>
