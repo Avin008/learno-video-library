@@ -8,7 +8,7 @@ const VideoCard = ({
 }): React.ReactElement => {
   return (
     <div className="h-full w-full ">
-      <div className="relative h-52 hover:cursor-pointer">
+      <div className="relative aspect-video hover:cursor-pointer">
         <Image className="" src={data.img} alt="" fill />
       </div>
       <div className="grid grid-cols-8 pt-3">

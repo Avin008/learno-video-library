@@ -69,10 +69,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className=" mt-16 grid min-h-full grid-cols-12 bg-gray-800 bg-opacity-95">
-        <div className="col-span-2 border border-gray-700 bg-[#1F2937]">
+        <div className="col-span-2 border border-gray-700 bg-[#1F2937] sm:hidden lg:block">
           <SideBar />
         </div>
-        <div className="col-span-10 grid grid-cols-3 gap-5 p-2">
+        <div className="grid gap-5 p-2 sm:col-span-12 sm:grid-cols-1 md:grid-cols-2 lg:col-span-10 lg:grid-cols-3">
           {data.map((x) => (
             <VideoCard data={x} />
           ))}

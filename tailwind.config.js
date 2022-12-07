@@ -7,6 +7,11 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      sm: "100px",
+      md: "680px",
+      lg: "1200px",
+    },
     extend: {
       fontFamily: {
         sans: ["var(--font-inter)", ...fontFamily.sans],
