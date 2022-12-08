@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const sidebarExpand = useSidebarStore((store) => store.sidebarExpand);
+  const sidebarExpand = useSidebarStore((store: any) => store.sidebarExpand);
   return (
     <div
       className={`min-h-screen border border-transparent bg-gray-800 ${inter.variable} font-sans`}
