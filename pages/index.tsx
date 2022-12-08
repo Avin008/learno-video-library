@@ -3,7 +3,7 @@ import Image from "next/image";
 import SideBar from "../components/Sidebar";
 import VideoCard from "../components/VideoCard";
 
-const data: {
+export const data: {
   _id: string;
   title: string;
   thumbnail: string;

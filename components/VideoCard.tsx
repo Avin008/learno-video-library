@@ -2,6 +2,7 @@ import Image from "next/image";
 import { MdMoreVert } from "react-icons/md";
 import VideoCardMenu from "./VideoCardMenu";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 type Props = {
   _id: string;
@@ -20,10 +21,22 @@ const VideoCard = ({ data }: { data: Props }): React.ReactElement => {
     setShowVideoOptions((prev) => !prev);
   };
 
+  const router = useRouter();
+
+  const navigate = () => {
+    router.push(`/${data._id}`);
+  };
+
   return (
     <div className="h-full w-full ">
       <div className="relative aspect-video hover:cursor-pointer">
-        <Image className="" src={data.thumbnail} alt="" fill />
+        <Image
+          className=""
+          src={data.thumbnail}
+          alt=""
+          fill
+          onClick={navigate}
+        />
         {showVideoOptions && <VideoCardMenu />}
       </div>
       <div className="grid grid-cols-8 pt-3">
