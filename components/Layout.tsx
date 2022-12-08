@@ -15,8 +15,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <Navbar />
       <main className=" mt-16 grid min-h-full grid-cols-12 bg-gray-800 bg-opacity-95 sm:relative lg:static">
         <div
-          className={`col-span-2 border border-gray-700 bg-[#1F2937] transition-all sm:absolute sm:bottom-0 sm:top-0 sm:z-10 lg:static sm:${
-            false ? "block" : "hidden"
+          className={`col-span-2 border border-gray-700 bg-[#1F2937] transition-all sm:absolute sm:bottom-0 sm:top-0 sm:z-10 lg:static ${
+            false ? "sm:block" : "sm:hidden"
           } lg:block`}
         >
           <SideBar />
