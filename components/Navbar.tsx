@@ -2,8 +2,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { MdOutlineDarkMode, MdLightMode, MdOutlineMenu } from "react-icons/md";
+import { useSidebarStore } from "../store";
 const Navbar = (): React.ReactElement => {
   const [darkMode, setDarkMode] = useState<boolean>(false);
+  const expandSidebar = useSidebarStore((store) => store.expandSidebar);
 
   const router = useRouter();
 
@@ -11,7 +13,10 @@ const Navbar = (): React.ReactElement => {
     <div className="fixed left-0 right-0 top-0 z-20 flex h-16 items-center justify-between border-b-2 border-gray-700 bg-gray-800 px-8 shadow-md">
       <div className="flex items-center">
         <span className="flex items-center gap-3 text-2xl font-extrabold">
-          <span className="cursor-pointer rounded-md p-1 text-2xl transition-all hover:bg-hover sm:block lg:hidden">
+          <span
+            className="cursor-pointer rounded-md p-1 text-2xl transition-all hover:bg-hover sm:block lg:hidden"
+            onClick={expandSidebar}
+          >
             <MdOutlineMenu color="white" />
           </span>
           <div className="text-3xl text-primary">Learno.</div>
