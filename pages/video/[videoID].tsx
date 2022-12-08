@@ -1,5 +1,5 @@
-import { data } from ".";
-import SuggestedVideoCard from "../components/SuggestedVideoCard";
+import { data } from "..";
+import SuggestedVideoCard from "../../components/SuggestedVideoCard";
 
 const SingleVideoPage = (): React.ReactElement => {
   return (

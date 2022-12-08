@@ -24,7 +24,7 @@ const VideoCard = ({ data }: { data: Props }): React.ReactElement => {
   const router = useRouter();
 
   const navigate = () => {
-    router.push(`/${data._id}`);
+    router.push(`/video/${data._id}`);
   };
 
   return (
