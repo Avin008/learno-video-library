@@ -6,7 +6,11 @@ import {
   MdWatchLater,
 } from "react-icons/md";
 
-const SingleVideoCard = (): React.ReactElement => {
+const SingleVideoCard = ({
+  togglePlaylistModal,
+}: {
+  togglePlaylistModal: () => void;
+}): React.ReactElement => {
   return (
     <div className="space-y-3">
       <div className="relative aspect-video">
@@ -40,7 +44,10 @@ const SingleVideoCard = (): React.ReactElement => {
             <MdOutlineThumbUp size={18} />
             <span className="sm:hidden md:block">LIKE</span>
           </span>
-          <span className="flex w-fit cursor-pointer items-center gap-2 rounded-md border border-primary  p-1 hover:bg-hover lg:px-4">
+          <span
+            className="flex w-fit cursor-pointer items-center gap-2 rounded-md border border-primary  p-1 hover:bg-hover lg:px-4"
+            onClick={togglePlaylistModal}
+          >
             <MdPlaylistAdd size={18} />
             <span className="sm:hidden md:block">ADD TO PLAYLIST</span>
           </span>
