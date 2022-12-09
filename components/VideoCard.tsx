@@ -14,7 +14,13 @@ type Props = {
   category: string;
 };
 
-const VideoCard = ({ data }: { data: Props }): React.ReactElement => {
+const VideoCard = ({
+  data,
+  togglePlaylistModal,
+}: {
+  data: Props;
+  togglePlaylistModal: () => void;
+}): React.ReactElement => {
   const [showVideoOptions, setShowVideoOptions] = useState<boolean>(false);
 
   const toggleVideoOptions = (): void => {
@@ -37,7 +43,9 @@ const VideoCard = ({ data }: { data: Props }): React.ReactElement => {
           fill
           onClick={navigate}
         />
-        {showVideoOptions && <VideoCardMenu />}
+        {showVideoOptions && (
+          <VideoCardMenu togglePlaylistModal={togglePlaylistModal} />
+        )}
       </div>
       <div className="grid grid-cols-8 pt-3">
         <div className="col-span-2 flex justify-center">

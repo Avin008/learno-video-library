@@ -1,7 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
+import CreatePlaylistModal from "../components/CreatePlaylistModal";
 import SideBar from "../components/Sidebar";
 import VideoCard from "../components/VideoCard";
+import { useState } from "react";
 
 export const data: {
   _id: string;
@@ -128,11 +130,24 @@ export const data: {
 ];
 
 export default function Home() {
+  const [showPlaylistModal, setShowPlaylistModal] = useState<boolean>(false);
+
+  const togglePlaylistModal = (): void => {
+    setShowPlaylistModal((prev) => !prev);
+  };
+
   return (
     <div className="grid gap-5 p-2 sm:col-span-12 sm:grid-cols-1 md:grid-cols-2 lg:col-span-10 lg:grid-cols-3">
       {data.map((x) => (
-        <VideoCard key={x._id} data={x} />
+        <VideoCard
+          key={x._id}
+          data={x}
+          togglePlaylistModal={togglePlaylistModal}
+        />
       ))}
+      {showPlaylistModal && (
+        <CreatePlaylistModal togglePlaylistModal={togglePlaylistModal} />
+      )}
     </div>
   );
 }
