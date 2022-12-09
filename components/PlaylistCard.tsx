@@ -24,12 +24,15 @@ const PlaylistCard = ({ data }: { data: Props }): React.ReactElement => {
   const router = useRouter();
 
   const navigate = () => {
-    router.push(`/video/${data._id}`);
+    router.push(`/playlist/${data._id}`);
   };
 
   return (
-    <div className="h-full w-full ">
-      <div className="relative aspect-video hover:cursor-pointer">
+    <div className="h-full w-full">
+      <div
+        className="relative aspect-video hover:cursor-pointer"
+        onClick={navigate}
+      >
         <Image
           className=""
           src={data.thumbnail}
