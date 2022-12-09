@@ -14,8 +14,11 @@ const SideBar = (): React.ReactElement => {
     router.push(`/${route}`);
   };
 
-  const activeLink = (route: string) => {
-    return router.asPath === route;
+  const activeLink = (route: string, routerTwo?: string) => {
+    return (
+      router.asPath === route ||
+      (routerTwo && router.pathname.includes(routerTwo))
+    );
   };
 
   return (
@@ -30,7 +33,7 @@ const SideBar = (): React.ReactElement => {
       </li>
       <li
         className={`flex items-center gap-3 p-4 text-white hover:cursor-pointer hover:bg-hover ${
-          activeLink("/playlist") && "bg-hover"
+          activeLink("/playlist", "/playlist/[PlaylistID]") && "bg-hover"
         }`}
         onClick={() => navigate("playlist")}
       >
