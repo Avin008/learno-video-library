@@ -8,11 +8,21 @@ const CreatePlaylistModal = ({
 }): React.ReactElement => {
   const [showError, setShowError] = useState<boolean>(false);
 
+  const handlePlaylistModalClose = (e: React.SyntheticEvent) => {
+    e.stopPropagation();
+  };
+
   const data = ["Sports", "Music", "Entertainment"];
 
   return (
-    <div className="fixed top-0 bottom-0 left-0 right-0 z-20 flex items-center justify-center">
-      <div className="mx-2 h-fit w-80 rounded-md bg-gray-800 shadow-md">
+    <div
+      className="fixed top-0 bottom-0 left-0 right-0 z-20 flex items-center justify-center bg-gray-600 bg-opacity-50 transition-all"
+      onClick={togglePlaylistModal}
+    >
+      <div
+        className="mx-2 h-fit w-80 rounded-md bg-gray-800 shadow-md"
+        onClick={handlePlaylistModalClose}
+      >
         <div className="flex items-center justify-between border-b border-gray-700 p-2">
           <h1 className="text-lg font-normal text-gray-200">Save to...</h1>
           <MdClose
