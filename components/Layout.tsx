@@ -13,7 +13,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div
-      className={`min-h-screen border border-transparent bg-gray-800 ${inter.variable} font-sans`}
+      className={`min-h-screen border border-transparent bg-dark-background ${inter.variable} font-sans`}
     >
       <Navbar />
       <main className=" mt-16 grid min-h-full grid-cols-12 sm:relative lg:static">
