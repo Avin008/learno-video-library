@@ -16,9 +16,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       className={`min-h-screen border border-transparent bg-gray-800 ${inter.variable} font-sans`}
     >
       <Navbar />
-      <main className=" mt-16 grid min-h-full grid-cols-12 bg-gray-800 bg-opacity-95 sm:relative lg:static">
+      <main className=" mt-16 grid min-h-full grid-cols-12 sm:relative lg:static">
         <div
-          className={`col-span-2 border border-gray-700 bg-[#1F2937] transition-all sm:absolute sm:bottom-0 sm:top-0 sm:z-10 lg:static ${
+          className={`col-span-2 border border-gray-700 transition-all sm:absolute sm:bottom-0 sm:top-0 sm:z-10 lg:static ${
             sidebar ? "sm:block" : "sm:hidden"
           } lg:block`}
         >
