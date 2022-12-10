@@ -24,7 +24,7 @@ const SideBar = (): React.ReactElement => {
   return (
     <ul className="sticky top-16 flex flex-col space-y-3">
       <li
-        className={`flex items-center gap-3 p-4 text-white hover:cursor-pointer hover:bg-hover ${
+        className={`flex items-center gap-3 p-4 text-white hover:cursor-pointer hover:bg-dark-hover ${
           activeLink("/") && "bg-hover"
         }`}
         onClick={() => navigate("/")}
@@ -32,7 +32,7 @@ const SideBar = (): React.ReactElement => {
         <MdHome size={20} /> HOME
       </li>
       <li
-        className={`flex items-center gap-3 p-4 text-white hover:cursor-pointer hover:bg-hover ${
+        className={`flex items-center gap-3 p-4 text-white hover:cursor-pointer hover:bg-dark-hover ${
           activeLink("/playlist", "/playlist/[PlaylistID]") && "bg-hover"
         }`}
         onClick={() => navigate("playlist")}
@@ -40,7 +40,7 @@ const SideBar = (): React.ReactElement => {
         <MdOutlineFeaturedPlayList size={20} /> PLAYLIST
       </li>
       <li
-        className={`flex items-center gap-3 p-4 text-white hover:cursor-pointer hover:bg-hover ${
+        className={`flex items-center gap-3 p-4 text-white hover:cursor-pointer hover:bg-dark-hover ${
           activeLink("/liked") && "bg-hover"
         }`}
         onClick={() => navigate("liked")}
@@ -48,7 +48,7 @@ const SideBar = (): React.ReactElement => {
         <MdFavorite size={20} /> LIKED
       </li>
       <li
-        className={`flex items-center gap-3 p-4 text-white hover:cursor-pointer hover:bg-hover ${
+        className={`flex items-center gap-3 p-4 text-white hover:cursor-pointer hover:bg-dark-hover ${
           activeLink("/watch-later") && "bg-hover"
         }`}
         onClick={() => navigate("watch-later")}
@@ -56,7 +56,7 @@ const SideBar = (): React.ReactElement => {
         <MdWatchLater size={20} /> WATCH LATER
       </li>
       <li
-        className={`flex items-center gap-3 p-4 text-white hover:cursor-pointer hover:bg-hover ${
+        className={`flex items-center gap-3 p-4 text-white hover:cursor-pointer hover:bg-dark-hover ${
           activeLink("/history") && "bg-hover"
         }`}
         onClick={() => navigate("history")}
