@@ -24,7 +24,7 @@ const Navbar = (): React.ReactElement => {
       </div>
 
       <ul
-        className="flex
+        className="flex items-center
        gap-6 text-base font-medium text-gray-200 transition-all"
       >
         <Link href="/login">
