@@ -32,7 +32,10 @@ const CreatePlaylistModal = ({
         </div>
         <ul className="h-40 space-y-3 overflow-y-scroll py-1 text-gray-200 shadow-inner">
           {data.map((x) => (
-            <li className="flex items-center gap-3 p-2 hover:cursor-pointer">
+            <li
+              className="flex items-center gap-3 p-2 hover:cursor-pointer"
+              key={x}
+            >
               <input
                 className="h-4 w-4 border-2 border-gray-200"
                 type="checkbox"
