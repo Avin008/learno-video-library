@@ -22,7 +22,7 @@ module.exports = {
           primary: "#6366F1",
           secondary: "",
           background: "#1f2937",
-          text: "",
+          text: "#e5e7eb",
           hover: "#2A3441",
           border: "#374151",
         },
