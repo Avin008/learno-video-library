@@ -62,7 +62,7 @@ const HistoryVideoCard = ({ data }: { data: Props }): React.ReactElement => {
         </div>
         <div className="col-span-1 flex items-start justify-end">
           <span
-            className="hover:bg-hover rounded-full p-1 hover:cursor-pointer"
+            className="rounded-full p-1 hover:cursor-pointer hover:bg-dark-hover"
             onClick={toggleVideoOptions}
           >
             <MdMoreVert className="rounded-full text-gray-200" size={25} />
