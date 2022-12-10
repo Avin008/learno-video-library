@@ -60,9 +60,9 @@ const WatchLaterVideoCard = ({ data }: { data: Props }): React.ReactElement => {
             {data.channelName}
           </h2>
         </div>
-        <div className="col-span-1 flex items-start justify-end bg-gray-800">
+        <div className="col-span-1 flex items-start justify-end">
           <span
-            className="rounded-full p-1 hover:cursor-pointer hover:bg-hover"
+            className="hover:bg-hover rounded-full p-1 hover:cursor-pointer"
             onClick={toggleVideoOptions}
           >
             <MdMoreVert className="rounded-full text-gray-200" size={25} />
