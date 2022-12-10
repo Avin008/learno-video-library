@@ -20,7 +20,9 @@ const Navbar = (): React.ReactElement => {
           >
             <MdOutlineMenu color="white" />
           </span>
-          <div className="text-3xl text-dark-primary">Learno.</div>
+          <Link href="/">
+            <div className="text-3xl text-dark-primary">Learno.</div>
+          </Link>
         </span>
       </div>
 
