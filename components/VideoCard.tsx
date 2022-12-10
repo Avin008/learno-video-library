@@ -34,7 +34,7 @@ const VideoCard = ({
   };
 
   return (
-    <div className="h-full w-full ">
+    <div className="h-full w-full">
       <div className="relative aspect-video hover:cursor-pointer">
         <Image
           className=""
@@ -68,7 +68,7 @@ const VideoCard = ({
             {data.channelName}
           </h2>
         </div>
-        <div className="col-span-1 flex items-start justify-end bg-gray-800">
+        <div className="col-span-1 flex items-start justify-end">
           <span
             className="rounded-full p-1 hover:cursor-pointer hover:bg-hover"
             onClick={toggleVideoOptions}
