@@ -32,7 +32,7 @@ const CreatePlaylistModal = ({
             onClick={togglePlaylistModal}
           />
         </div>
-        <ul className="h-40 space-y-3 overflow-y-scroll py-1 shadow-inner dark:text-dark-text">
+        <ul className="h-40 space-y-3 overflow-y-scroll p-2 shadow-inner dark:text-dark-text">
           {data.map((x) => (
             <li
               className="flex items-center gap-3 p-2 hover:cursor-pointer"
