@@ -51,21 +51,21 @@ const WatchLaterVideoCard = ({ data }: { data: Props }): React.ReactElement => {
           </div>
         </div>
         <div className="col-span-5 space-y-1">
-          <h1 className="text-sm font-semibold leading-5 text-gray-300">
+          <h1 className="text-sm font-semibold leading-5 dark:text-gray-300">
             {data.title.length > 50
               ? `${data.title.slice(0, 50)}..`
               : data.title}
           </h1>
-          <h2 className="text-sm font-semibold text-gray-400">
+          <h2 className="text-sm font-semibold dark:text-gray-400">
             {data.channelName}
           </h2>
         </div>
         <div className="col-span-1 flex items-start justify-end">
           <span
-            className="rounded-full p-1 hover:cursor-pointer hover:bg-dark-hover"
+            className="rounded-full p-1 hover:cursor-pointer dark:hover:bg-dark-hover"
             onClick={toggleVideoOptions}
           >
-            <MdMoreVert className="rounded-full text-gray-200" size={25} />
+            <MdMoreVert className="rounded-full dark:text-gray-200" size={25} />
           </span>
         </div>
       </div>
