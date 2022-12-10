@@ -48,7 +48,7 @@ const CreatePlaylistModal = ({
             </li>
           ))}
         </ul>
-        <div className="flex h-fit flex-col space-y-3 border-t px-3 pb-3 dark:border-gray-700">
+        <div className="flex h-fit flex-col space-y-3 border-t px-3 py-3 dark:border-gray-700">
           <input
             className="w-full border-b bg-transparent p-1 outline-none placeholder:text-gray-500 dark:border-dark-primary dark:text-dark-text"
             type="text"
