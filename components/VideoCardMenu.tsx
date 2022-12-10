@@ -6,17 +6,17 @@ const VideoCardMenu = ({
   togglePlaylistModal: () => void;
 }): React.ReactElement => {
   return (
-    <ul className="absolute bottom-1 right-2 h-fit w-44 space-y-1 border border-gray-600 bg-background bg-opacity-95 py-1 text-xs text-gray-200 shadow-md transition-all">
-      <li className="flex items-center gap-2 p-2 transition-all hover:bg-hover">
+    <ul className="bg-background absolute bottom-1 right-2 h-fit w-44 space-y-1 border border-dark-border bg-dark-background py-1 text-xs text-gray-200 shadow-md transition-all">
+      <li className="hover:bg-hover flex items-center gap-2 p-2 transition-all">
         <MdThumbUp /> ADD TO LIKE
       </li>
       <li
-        className="flex items-center gap-2 p-2 transition-all hover:bg-hover"
+        className="hover:bg-hover flex items-center gap-2 p-2 transition-all"
         onClick={togglePlaylistModal}
       >
         <MdPlaylistAdd /> ADD TO PLAYLIST
       </li>
-      <li className="flex items-center gap-2 p-2 transition-all hover:bg-hover">
+      <li className="hover:bg-hover flex items-center gap-2 p-2 transition-all">
         <MdWatchLater /> WATCH LATER
       </li>
     </ul>
