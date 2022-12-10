@@ -38,7 +38,7 @@ const Navbar = (): React.ReactElement => {
           </li>
         </Link>
         <li
-          className="hover:bg-hover rounded-md px-3 py-2 text-sm font-medium  text-gray-300 transition-all hover:cursor-pointer hover:text-white sm:fixed sm:top-3 sm:right-5 md:static"
+          className="rounded-md px-3 py-2 text-sm font-medium text-gray-300  transition-all hover:cursor-pointer hover:bg-dark-hover hover:text-white sm:fixed sm:top-3 sm:right-5 md:static"
           onClick={() => setDarkMode((darkMode) => !darkMode)}
         >
           {darkMode ? (
