@@ -4,7 +4,7 @@ const LoginPage = (): React.ReactElement => {
   return (
     <div className="flex min-h-screen items-center justify-center sm:col-span-12 lg:col-span-10">
       <form className="">
-        <div className="m-auto mx-2 h-fit w-96 space-y-2 rounded-md border p-6 shadow-md dark:border-dark-border dark:bg-dark-background">
+        <div className="m-auto h-fit w-80 space-y-4 rounded-md border p-6 shadow-md dark:border-dark-border dark:bg-dark-background">
           <h1 className="text-2xl font-semibold dark:text-dark-text">Login</h1>
           <div className="space-y-3">
             <span className="flex flex-col space-y-1">
