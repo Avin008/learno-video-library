@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { MdOutlineDarkMode, MdLightMode, MdOutlineMenu } from "react-icons/md";
-import { useSidebarStore } from "../store";
+import { useSidebarStore, useThemeStore } from "../store";
+
 const Navbar = (): React.ReactElement => {
-  const [darkMode, setDarkMode] = useState<boolean>(false);
   const expandSidebar = useSidebarStore((store) => store.expandSidebar);
+  const darkMode = useThemeStore((store) => store.darkMode);
+  const toggleDarkMode = useThemeStore((store) => store.toggleDarkMode);
 
   const router = useRouter();
 
@@ -39,12 +40,12 @@ const Navbar = (): React.ReactElement => {
         </Link>
         <li
           className="rounded-md px-3 py-2 text-sm font-medium text-gray-300  transition-all hover:cursor-pointer hover:bg-dark-hover hover:text-white sm:fixed sm:top-3 sm:right-5 md:static"
-          onClick={() => setDarkMode((darkMode) => !darkMode)}
+          onClick={toggleDarkMode}
         >
           {darkMode ? (
-            <MdOutlineDarkMode size={25} />
-          ) : (
             <MdLightMode size={25} />
+          ) : (
+            <MdOutlineDarkMode size={25} />
           )}
         </li>
       </ul>
