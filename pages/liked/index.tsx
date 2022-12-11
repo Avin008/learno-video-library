@@ -1,5 +1,5 @@
-import { data } from "..";
 import LikedVideoCard from "../../components/LikedVideoCard";
+import { data } from "../../data";
 
 const LikedPage = (): React.ReactElement => {
   return (

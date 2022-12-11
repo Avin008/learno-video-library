@@ -1,5 +1,5 @@
-import { data } from "..";
 import PlaylistCard from "../../components/PlaylistCard";
+import { data } from "../../data";
 
 const PlaylistPage = (): React.ReactElement => {
   return (

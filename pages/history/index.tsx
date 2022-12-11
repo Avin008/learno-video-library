@@ -1,5 +1,5 @@
-import { data } from "..";
 import HistoryVideoCard from "../../components/HistoryVideoCard";
+import { data } from "../../data";
 
 const HistoryPage = (): React.ReactElement => {
   return (

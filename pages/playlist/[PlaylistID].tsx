@@ -1,5 +1,5 @@
-import { data } from "..";
 import PlaylistVideoCard from "../../components/PlaylistVideoCard";
+import { data } from "../../data";
 
 const PlaylistPage = (): React.ReactElement => {
   return (

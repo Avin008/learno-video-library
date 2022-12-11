@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { data } from "..";
 import CreatePlaylistModal from "../../components/CreatePlaylistModal";
 import SingleVideoCard from "../../components/SingleVideoCard";
 import SuggestedVideoCard from "../../components/SuggestedVideoCard";
 import { useState } from "react";
+import { data } from "../../data";
 
 const SingleVideoPage = (): React.ReactElement => {
   const [showPlaylistModel, setShowPlaylistModal] = useState<boolean>(false);

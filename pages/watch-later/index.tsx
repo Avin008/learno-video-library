@@ -1,5 +1,5 @@
-import { data } from "..";
 import WatchLaterVideoCard from "../../components/WatchLaterVideoCard";
+import { data } from "../../data";
 
 const WatchLaterPage = (): React.ReactElement => {
   return (
