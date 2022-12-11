@@ -2,7 +2,17 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import {
+  arrayRemove,
+  arrayUnion,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
+import { Video } from "../types";
 import { auth, db } from "./firebase";
 
 const getCollectionData = async (collectionName: string) => {
@@ -45,9 +55,39 @@ const setData = async (
   });
 };
 
+const addToLiked = async (userDocumentID: string, video: any) => {
+  const docRef = doc(db, "users", userDocumentID);
+  await updateDoc(docRef, { liked: arrayUnion(video) });
+};
+
+const removeFromLiked = async (userDocumentID: string, video: any) => {
+  const docRef = doc(db, "users", userDocumentID);
+  await updateDoc(docRef, { liked: arrayRemove(video) });
+};
+
+const addToWatchLater = async (userDocumentID: string, video: any) => {
+  const docRef = doc(db, "users", userDocumentID);
+  await updateDoc(docRef, { watchLater: arrayUnion(video) });
+};
+
+const removeFromWatchLater = async (userDocumentID: string, video: any) => {
+  const docRef = doc(db, "users", userDocumentID);
+  await updateDoc(docRef, { watchLater: arrayRemove(video) });
+};
+
 const signupUser = async (email: string, password: string) => {
   const userData = createUserWithEmailAndPassword(auth, email, password);
   return userData;
 };
 
-export { getCollectionData, getSingleDoc, setData, loginUser, signupUser };
+export {
+  getCollectionData,
+  getSingleDoc,
+  setData,
+  loginUser,
+  signupUser,
+  addToLiked,
+  addToWatchLater,
+  removeFromLiked,
+  removeFromWatchLater,
+};
