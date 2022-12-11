@@ -21,7 +21,7 @@ const loginUser = async (email: string, password: string) => {
   return userData;
 };
 
-const signoutUser = async (email: string, password: string) => {
+const signupUser = async (email: string, password: string) => {
   const userData = createUserWithEmailAndPassword(auth, email, password);
   return userData;
 };
@@ -35,4 +35,4 @@ const setData = async (
   await setDoc(docRef, initialUserData);
 };
 
-export { getCollectionData, getSingleDoc, setData, loginUser, signoutUser };
+export { getCollectionData, getSingleDoc, setData, loginUser, signupUser };

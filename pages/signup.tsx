@@ -1,5 +1,8 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
+import { signupUser } from "../services/firebaseFunc";
+import { useAuthStore } from "../store";
 
 const SignupPage = (): React.ReactElement => {
   const [userData, setUserData] = useState({
@@ -14,9 +17,24 @@ const SignupPage = (): React.ReactElement => {
     setUserData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const router = useRouter();
+
+  const addAuth = useAuthStore((store: any) => store.addAuth);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await signupUser(userData.email, userData.password);
+      addAuth(res.user.uid);
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center sm:col-span-12 lg:col-span-10">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="m-auto h-fit w-80 space-y-4 rounded-md border p-6 shadow-md dark:border-dark-border dark:bg-dark-background">
           <h1 className="text-2xl font-semibold dark:text-dark-text">
             Sign Up
@@ -85,10 +103,7 @@ const SignupPage = (): React.ReactElement => {
           </div>
           <div className="pt-3">
             <span className="flex flex-col space-y-2">
-              <button
-                className="rounded-sm bg-dark-primary p-2 font-semibold hover:bg-opacity-90 active:bg-opacity-95 dark:text-dark-text"
-                // onClick={signupUser}
-              >
+              <button className="rounded-sm bg-dark-primary p-2 font-semibold hover:bg-opacity-90 active:bg-opacity-95 dark:text-dark-text">
                 Sign Up
               </button>
             </span>
