@@ -41,7 +41,7 @@ const PlaylistCard = ({ data }: { data: Props }): React.ReactElement => {
           onClick={navigate}
         />
         {showVideoOptions && <PlaylistCardMenu />}
-        <div className="absolute top-0 bottom-0 left-[50%] right-0 flex items-center justify-center bg-opacity-70 dark:bg-gray-800">
+        <div className="absolute top-0 bottom-0 left-[50%] right-0 flex items-center justify-center dark:bg-gray-800 dark:bg-opacity-70">
           <span className="text-3xl font-semibold dark:text-white">5</span>
         </div>
       </div>
