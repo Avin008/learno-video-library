@@ -1,5 +1,8 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { loginUser } from "../services/firebaseFunc";
+import { useAuthStore } from "../store";
 
 const LoginPage = (): React.ReactElement => {
   const [userData, setUserData] = useState({
@@ -7,14 +10,33 @@ const LoginPage = (): React.ReactElement => {
     password: "",
   });
 
+  const addAuth = useAuthStore((store: any) => store.addAuth);
+
+  const router = useRouter();
+
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const guestLogin = () => {
+    setUserData({ email: "johndoe@gmail.com", password: "john@test@1234" });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await loginUser(userData.email, userData.password);
+      addAuth(res.user.uid);
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center sm:col-span-12 lg:col-span-10">
-      <form className="">
+      <form onSubmit={handleSubmit}>
         <div className="m-auto h-fit w-80 space-y-4 rounded-md border p-6 shadow-md dark:border-dark-border dark:bg-dark-background">
           <h1 className="text-2xl font-semibold dark:text-dark-text">Login</h1>
           <div className="space-y-3">
@@ -56,7 +78,7 @@ const LoginPage = (): React.ReactElement => {
               </button>
               <button
                 className="rounded-sm bg-yellow-800 p-2 font-semibold text-white hover:bg-opacity-90 active:opacity-95"
-                // onClick={guestLogin}
+                onClick={guestLogin}
               >
                 Login As Guest
               </button>

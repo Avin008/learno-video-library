@@ -41,6 +41,7 @@ const Navbar = (): React.ReactElement => {
         ) : status ? (
           <li
             className={`rounded-md bg-dark-primary px-3 py-2 text-sm font-medium text-white hover:cursor-pointer`}
+            onClick={removeAuth}
           >
             LOGOUT
           </li>
