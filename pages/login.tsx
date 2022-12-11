@@ -1,6 +1,17 @@
 import Link from "next/link";
+import React, { useState } from "react";
 
 const LoginPage = (): React.ReactElement => {
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserData((prev) => ({ ...prev, [name]: value }));
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center sm:col-span-12 lg:col-span-10">
       <form className="">
@@ -12,14 +23,14 @@ const LoginPage = (): React.ReactElement => {
                 Email
               </label>
               <input
-                className="border p-2 dark:border-dark-border dark:bg-transparent dark:placeholder:text-gray-500"
+                className="border p-2 dark:border-dark-border dark:bg-transparent dark:text-dark-text dark:placeholder:text-gray-500"
                 type="email"
                 placeholder="johndoe@gmail.com"
                 name="email"
                 id="email"
                 required
-                // value={userData.email}
-                // onChange={handleInput}
+                value={userData.email}
+                onChange={inputHandler}
               />
             </span>
             <span className="flex flex-col space-y-1">
@@ -27,14 +38,14 @@ const LoginPage = (): React.ReactElement => {
                 Password
               </label>
               <input
-                className="border p-2 dark:border-dark-border dark:bg-transparent dark:placeholder:text-gray-500"
+                className="border p-2 dark:border-dark-border dark:bg-transparent dark:text-dark-text dark:placeholder:text-gray-500"
                 type="password"
                 placeholder="**********"
                 name="password"
                 id="password"
                 required
-                // value={userData.password}
-                // onChange={handleInput}
+                value={userData.password}
+                onChange={inputHandler}
               />
             </span>
           </div>
