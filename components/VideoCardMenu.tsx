@@ -8,6 +8,7 @@ import {
 import useRemoveFromLiked from "../hooks/useRemoveFromLiked";
 import { useAuthStore } from "../store";
 import { User, Video } from "../types";
+import isVideoInPlaylist from "../utility/isVideoInPlaylist";
 
 const VideoCardMenu = ({
   togglePlaylistModal,
@@ -62,12 +63,23 @@ const VideoCardMenu = ({
           <MdThumbUp /> ADD TO LIKE
         </li>
       )}
-      <li
-        className="flex items-center gap-2 p-2 transition-all dark:hover:bg-dark-hover"
-        onClick={togglePlaylistModal}
-      >
-        <MdPlaylistAdd /> ADD TO PLAYLIST
-      </li>
+      {authStatus && isVideoInPlaylist(userData.playlist, videoData.id) ? (
+        <li
+          className="flex items-center gap-2 p-2 transition-all dark:hover:bg-dark-hover"
+          onClick={togglePlaylistModal}
+        >
+          <MdPlaylistAdd /> REMOVE FROM PLAYLIST
+        </li>
+      ) : (
+        <li
+          className="flex items-center gap-2 p-2 transition-all dark:hover:bg-dark-hover"
+          onClick={() => {
+            authStatus ? togglePlaylistModal() : navigate();
+          }}
+        >
+          <MdPlaylistAdd /> ADD TO PLAYLIST
+        </li>
+      )}
       {authStatus && isVideoInWatchLater ? (
         <li
           className="flex items-center gap-2 p-2 transition-all dark:hover:bg-dark-hover"
