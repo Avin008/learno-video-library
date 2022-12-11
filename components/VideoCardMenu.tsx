@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { MdPlaylistAdd, MdThumbUp, MdWatchLater } from "react-icons/md";
 import { useAuthStore } from "../store";
 import { User, Video } from "../types";
@@ -12,6 +13,10 @@ const VideoCardMenu = ({
   videoData: Video;
 }): React.ReactElement => {
   const authStatus = useAuthStore((store: any) => store.authStatus);
+
+  const router = useRouter();
+
+  const navigate = () => router.push("/login");
 
   const isVideoInLiked = userData.liked.find((x) => x.id === videoData.id)
     ? true
@@ -30,7 +35,12 @@ const VideoCardMenu = ({
           <MdThumbUp /> REMOVE FROM LIKED
         </li>
       ) : (
-        <li className="flex items-center gap-2 p-2 transition-all dark:hover:bg-dark-hover">
+        <li
+          className="flex items-center gap-2 p-2 transition-all dark:hover:bg-dark-hover"
+          onClick={() => {
+            authStatus ? "" : navigate();
+          }}
+        >
           <MdThumbUp /> ADD TO LIKE
         </li>
       )}
@@ -45,7 +55,12 @@ const VideoCardMenu = ({
           <MdWatchLater /> REMOVE FROM WATCH LATER
         </li>
       ) : (
-        <li className="flex items-center gap-2 p-2 transition-all dark:hover:bg-dark-hover">
+        <li
+          className="flex items-center gap-2 p-2 transition-all dark:hover:bg-dark-hover"
+          onClick={() => {
+            authStatus ? "" : navigate();
+          }}
+        >
           <MdWatchLater /> WATCH LATER
         </li>
       )}
