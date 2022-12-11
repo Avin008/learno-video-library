@@ -13,7 +13,7 @@ const getCollectionData = async (collectionName: string) => {
 const getSingleDoc = async (collectionName: string, docID: string) => {
   const docRef = doc(db, collectionName, docID);
   const documentData = await getDoc(docRef);
-  return documentData;
+  return documentData.data();
 };
 
 const loginUser = async (email: string, password: string) => {
