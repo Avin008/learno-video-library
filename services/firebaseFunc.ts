@@ -21,18 +21,33 @@ const loginUser = async (email: string, password: string) => {
   return userData;
 };
 
-const signupUser = async (email: string, password: string) => {
-  const userData = createUserWithEmailAndPassword(auth, email, password);
-  return userData;
+const initialUserData = {
+  playlist: [],
+  liked: [],
+  watchLater: [],
+  history: [],
 };
 
 const setData = async (
   collectionName: string,
   docID: string,
-  initialUserData: any
+  firstname: string,
+  lastname: string,
+  email: string
 ) => {
   const docRef = doc(db, collectionName, docID);
-  await setDoc(docRef, initialUserData);
+  await setDoc(docRef, {
+    id: docID,
+    firstname,
+    lastname,
+    email,
+    ...initialUserData,
+  });
+};
+
+const signupUser = async (email: string, password: string) => {
+  const userData = createUserWithEmailAndPassword(auth, email, password);
+  return userData;
 };
 
 export { getCollectionData, getSingleDoc, setData, loginUser, signupUser };

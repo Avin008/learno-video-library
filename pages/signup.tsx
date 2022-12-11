@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { signupUser } from "../services/firebaseFunc";
+import { setData, signupUser } from "../services/firebaseFunc";
 import { useAuthStore } from "../store";
 
 const SignupPage = (): React.ReactElement => {
@@ -25,6 +25,13 @@ const SignupPage = (): React.ReactElement => {
     e.preventDefault();
     try {
       const res = await signupUser(userData.email, userData.password);
+      setData(
+        "users",
+        res.user.uid,
+        userData.firstname,
+        userData.lastname,
+        userData.email
+      );
       addAuth(res.user.uid);
       router.push("/");
     } catch (error) {
