@@ -8,3 +8,14 @@ export type Video = {
   videoLink: string;
   category: string;
 };
+
+export type User = {
+  id: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  liked: Video[];
+  watchLater: Video[];
+  history: Video[];
+  playlist: any;
+};
