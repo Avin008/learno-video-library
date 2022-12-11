@@ -1,6 +1,19 @@
 import Link from "next/link";
+import { useState } from "react";
 
 const SignupPage = (): React.ReactElement => {
+  const [userData, setUserData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+  });
+
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserData((prev) => ({ ...prev, [name]: value }));
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center sm:col-span-12 lg:col-span-10">
       <form>
@@ -14,14 +27,14 @@ const SignupPage = (): React.ReactElement => {
                 First Name
               </label>
               <input
-                className="border border-gray-400 p-2 dark:bg-transparent"
+                className="border border-gray-400 p-2 dark:bg-transparent dark:text-dark-text"
                 type="text"
                 placeholder="John"
                 name="firstname"
                 id="firstname"
                 required
-                // value={userData.firstname}
-                // onChange={handleInput}
+                value={userData.firstname}
+                onChange={inputHandler}
               />
             </span>
             <span className="flex flex-col space-y-1">
@@ -29,14 +42,14 @@ const SignupPage = (): React.ReactElement => {
                 Last Name
               </label>
               <input
-                className="border border-gray-400 p-2 dark:bg-transparent"
+                className="border border-gray-400 p-2 dark:bg-transparent dark:text-dark-text"
                 type="text"
                 placeholder="Doe"
                 name="lastname"
                 id="lastname"
                 required
-                // value={userData.lastname}
-                // onChange={handleInput}
+                value={userData.lastname}
+                onChange={inputHandler}
               />
             </span>
             <span className="flex flex-col space-y-1">
@@ -44,14 +57,14 @@ const SignupPage = (): React.ReactElement => {
                 Email
               </label>
               <input
-                className="border border-gray-400 p-2 dark:bg-transparent"
+                className="border border-gray-400 p-2 dark:bg-transparent dark:text-dark-text"
                 type="email"
                 placeholder="johndoe@gmail.com"
                 name="email"
                 id="email"
                 required
-                // value={userData.email}
-                // onChange={handleInput}
+                value={userData.email}
+                onChange={inputHandler}
               />
             </span>
             <span className="flex flex-col space-y-1">
@@ -59,14 +72,14 @@ const SignupPage = (): React.ReactElement => {
                 Password
               </label>
               <input
-                className="border border-gray-400 p-2 dark:bg-transparent"
+                className="border border-gray-400 p-2 dark:bg-transparent dark:text-dark-text"
                 type="password"
                 placeholder="**********"
                 name="password"
                 id="password"
                 required
-                // value={userData.password}
-                // onChange={handleInput}
+                value={userData.password}
+                onChange={inputHandler}
               />
             </span>
           </div>
