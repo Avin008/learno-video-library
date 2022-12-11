@@ -13,7 +13,7 @@ const useGetUserData = (): {
   const { data, isLoading, isError } = useQuery(
     ["user"],
     async () => {
-      return getSingleDoc("user", token);
+      return getSingleDoc("users", token);
     },
     {
       enabled: authStatus,

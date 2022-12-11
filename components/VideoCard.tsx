@@ -3,13 +3,15 @@ import { MdMoreVert } from "react-icons/md";
 import VideoCardMenu from "./VideoCardMenu";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { Videos } from "../types";
+import { User, Video } from "../types";
 
 const VideoCard = ({
   videoData,
+  userData,
   togglePlaylistModal,
 }: {
-  videoData: Videos;
+  videoData: Video;
+  userData: User;
   togglePlaylistModal: () => void;
 }): React.ReactElement => {
   const [showVideoOptions, setShowVideoOptions] = useState<boolean>(false);
@@ -35,7 +37,11 @@ const VideoCard = ({
           onClick={navigate}
         />
         {showVideoOptions && (
-          <VideoCardMenu togglePlaylistModal={togglePlaylistModal} />
+          <VideoCardMenu
+            togglePlaylistModal={togglePlaylistModal}
+            userData={userData}
+            videoData={videoData}
+          />
         )}
       </div>
       <div className="grid grid-cols-8 pt-3">
