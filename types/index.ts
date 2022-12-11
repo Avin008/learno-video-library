@@ -1,4 +1,4 @@
-export type Videos = {
+export type Video = {
   id: string;
   categoryId: number;
   title: string;
