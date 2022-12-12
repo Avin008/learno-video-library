@@ -5,11 +5,14 @@ import {
   MdThumbUp,
   MdWatchLater,
 } from "react-icons/md";
+import { Video } from "../types";
 
 const SingleVideoCard = ({
   togglePlaylistModal,
+  videoData,
 }: {
   togglePlaylistModal: () => void;
+  videoData: Video;
 }): React.ReactElement => {
   return (
     <div className="space-y-3">
@@ -17,26 +20,26 @@ const SingleVideoCard = ({
         <iframe
           height="100%"
           width="100%"
-          src="https://www.youtube.com/embed/rkZl2gsLUp4?autoplay=1"
+          src={videoData.videoLink}
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         ></iframe>
       </div>
       <div className="px-2 sm:space-y-1 md:space-y-4 lg:space-y-2">
         <h1 className="text-lg font-medium dark:text-gray-300">
-          Yuval Noah Harari | 21 Lessons for the 21st Century | Talks at Google
+          {videoData.title}
         </h1>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 font-semibold dark:text-gray-400">
             <div className="relative h-10 w-10 rounded-full">
               <Image
                 className="rounded-full"
-                src="https://yt3.ggpht.com/ytc/AKedOLQDTf95gNBGbmSrs0I54WEsOqOw9oddIblPuQnj1w=s88-c-k-c0x00ffffff-no-rj"
+                src={videoData.channelIcon}
                 alt=""
                 fill
               />
             </div>
-            <span>Ted Talks</span>
+            <span>{videoData.channelName}</span>
           </div>
         </div>
         <div className="flex flex-wrap gap-5 text-xs dark:text-gray-100 sm:justify-end">
