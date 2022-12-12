@@ -3,18 +3,13 @@ import { MdMoreVert } from "react-icons/md";
 import PlaylistCardMenu from "./PlaylistCardMenu";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { Playlist } from "../types";
 
-type Props = {
-  _id: string;
-  title: string;
-  thumbnail: string;
-  channelIcon: string;
-  channelName: string;
-  videoLink: string;
-  category: string;
-};
-
-const PlaylistCard = ({ data }: { data: Props }): React.ReactElement => {
+const PlaylistCard = ({
+  playlistData,
+}: {
+  playlistData: Playlist;
+}): React.ReactElement => {
   const [showVideoOptions, setShowVideoOptions] = useState<boolean>(false);
 
   const toggleVideoOptions = (): void => {
@@ -24,7 +19,7 @@ const PlaylistCard = ({ data }: { data: Props }): React.ReactElement => {
   const router = useRouter();
 
   const navigate = () => {
-    router.push(`/playlist/${data._id}`);
+    router.push(`/playlist/${playlistData.id}`);
   };
 
   return (
@@ -35,20 +30,22 @@ const PlaylistCard = ({ data }: { data: Props }): React.ReactElement => {
       >
         <Image
           className=""
-          src={data.thumbnail}
+          src={playlistData.videos[0] ? playlistData.videos[0].thumbnail : ""}
           alt=""
           fill
           onClick={navigate}
         />
         {showVideoOptions && <PlaylistCardMenu />}
         <div className="absolute top-0 bottom-0 left-[50%] right-0 flex items-center justify-center dark:bg-gray-800 dark:bg-opacity-70">
-          <span className="text-3xl font-semibold dark:text-white">5</span>
+          <span className="text-3xl font-semibold dark:text-white">
+            {playlistData.videos.length}
+          </span>
         </div>
       </div>
       <div className="grid grid-cols-8 pt-3">
         <div className="col-span-6 space-y-1">
           <h2 className="text-base font-semibold dark:text-gray-300">
-            {data.channelName}
+            {playlistData.name}
           </h2>
         </div>
         <div className="col-span-2 flex items-start justify-end">

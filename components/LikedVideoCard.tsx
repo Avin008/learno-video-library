@@ -1,20 +1,20 @@
 import Image from "next/image";
 import { MdMoreVert } from "react-icons/md";
 import LikedVideoCardMenu from "./LikedVideoCardMenu";
-import { useState } from "react";
 import { useRouter } from "next/router";
 import { Video } from "../types";
+import { useToggle } from "../hooks";
+import { useAuthStore } from "../store";
 
 const LikedVideoCard = ({
   videoData,
 }: {
   videoData: Video;
 }): React.ReactElement => {
-  const [showVideoOptions, setShowVideoOptions] = useState<boolean>(false);
+  const { show: showVideoOptions, toggle: toggleShowVideoOptions } =
+    useToggle();
 
-  const toggleVideoOptions = (): void => {
-    setShowVideoOptions((prev) => !prev);
-  };
+  const token = useAuthStore((store: any) => store.token);
 
   const router = useRouter();
 
@@ -32,7 +32,7 @@ const LikedVideoCard = ({
           fill
           onClick={navigate}
         />
-        {showVideoOptions && <LikedVideoCardMenu />}
+        {showVideoOptions && <LikedVideoCardMenu videoData={videoData} />}
       </div>
       <div className="grid grid-cols-8 pt-3">
         <div className="col-span-2 flex justify-center">
@@ -58,7 +58,7 @@ const LikedVideoCard = ({
         <div className="col-span-1 flex items-start justify-end">
           <span
             className="rounded-full p-1 hover:cursor-pointer dark:hover:bg-dark-hover"
-            onClick={toggleVideoOptions}
+            onClick={toggleShowVideoOptions}
           >
             <MdMoreVert className="rounded-full dark:text-gray-200" size={25} />
           </span>

@@ -1,9 +1,21 @@
 import React from "react";
 import { MdPlaylistAdd, MdThumbUp, MdWatchLater } from "react-icons/md";
+import { useRemoveFromLiked } from "../hooks";
+import { useAuthStore } from "../store";
+import { Video } from "../types";
 
-const LikedVideoCardMenu = (): React.ReactElement => {
+const LikedVideoCardMenu = ({
+  videoData,
+}: {
+  videoData: Video;
+}): React.ReactElement => {
+  const token = useAuthStore((store: any) => store.token);
+
+  const { mutate: removeVideoFromLiked } = useRemoveFromLiked(videoData, token);
+
   const handleClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
+    removeVideoFromLiked();
   };
 
   return (
