@@ -1,5 +1,5 @@
 import React from "react";
-import { MdPlaylistAdd, MdThumbUp, MdWatchLater } from "react-icons/md";
+import { MdPlaylistAdd } from "react-icons/md";
 import { useRemoveFromWatchLater } from "../hooks";
 import { useAuthStore } from "../store";
 import { Video } from "../types";
