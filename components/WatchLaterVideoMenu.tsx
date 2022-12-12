@@ -1,9 +1,25 @@
 import React from "react";
 import { MdPlaylistAdd, MdThumbUp, MdWatchLater } from "react-icons/md";
+import { useRemoveFromWatchLater } from "../hooks";
+import { useAuthStore } from "../store";
+import { Video } from "../types";
 
-const WatchLaterVideoCardMenu = (): React.ReactElement => {
+type WatchLaterVideoCardMenuProps = { videoData: Video };
+
+const WatchLaterVideoCardMenu = ({
+  videoData,
+}: WatchLaterVideoCardMenuProps): React.ReactElement => {
+  const token = useAuthStore((store: any) => store.token);
+
+  const {
+    mutate: removeVideoFromWatchLater,
+    isLoading,
+    isError,
+  } = useRemoveFromWatchLater(videoData, token);
+
   const handleClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
+    removeVideoFromWatchLater();
   };
 
   return (
