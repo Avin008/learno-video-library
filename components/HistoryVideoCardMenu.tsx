@@ -1,9 +1,23 @@
 import React from "react";
 import { MdPlaylistAdd, MdThumbUp, MdWatchLater } from "react-icons/md";
+import { useRemoveFromHistory } from "../hooks";
+import { useAuthStore } from "../store";
+import { Video } from "../types";
 
-const HistoryVideoCardMenu = (): React.ReactElement => {
+type HistoryVideoCardMenuProps = {
+  videoData: Video;
+};
+
+const HistoryVideoCardMenu = ({
+  videoData,
+}: HistoryVideoCardMenuProps): React.ReactElement => {
+  const token = useAuthStore((store: any) => store.token);
+
+  const { mutate: removeFromHistory } = useRemoveFromHistory(videoData, token);
+
   const handleClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
+    removeFromHistory();
   };
 
   return (

@@ -3,7 +3,8 @@ import { MdMoreVert } from "react-icons/md";
 import { CreatePlaylistModal, VideoCardMenu } from "../components";
 import { useRouter } from "next/router";
 import { User, Video } from "../types";
-import { useToggle } from "../hooks";
+import { useAddToHistory, useToggle } from "../hooks";
+import { useAuthStore } from "../store";
 
 type VideoCardProps = {
   videoData: Video;
@@ -20,10 +21,18 @@ const VideoCard = ({
   const { show: showPlaylistModal, toggle: toggleShowPlaylistModal } =
     useToggle();
 
+  const authStatus = useAuthStore((store: any) => store.authStatus);
+
   const router = useRouter();
+  const {
+    mutate: addToHistory,
+    isLoading,
+    isError,
+  } = useAddToHistory(videoData, userData.id);
 
   const navigate = () => {
     router.push(`/video/${videoData.id}`);
+    authStatus && addToHistory();
   };
 
   return (

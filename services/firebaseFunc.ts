@@ -60,6 +60,16 @@ const addToLiked = async (userDocumentID: string, video: any) => {
   await updateDoc(docRef, { liked: arrayUnion(video) });
 };
 
+const addToHistory = async (userDocumentID: string, video: any) => {
+  const docRef = doc(db, "users", userDocumentID);
+  await updateDoc(docRef, { history: arrayUnion(video) });
+};
+
+const removeFromHistory = async (userDocumentId: string, video: any) => {
+  const docRef = doc(db, "users", userDocumentId);
+  await updateDoc(docRef, { history: arrayRemove(video) });
+};
+
 const removeFromLiked = async (userDocumentID: string, video: any) => {
   const docRef = doc(db, "users", userDocumentID);
   await updateDoc(docRef, { liked: arrayRemove(video) });
@@ -90,4 +100,6 @@ export {
   addToWatchLater,
   removeFromLiked,
   removeFromWatchLater,
+  addToHistory,
+  removeFromHistory,
 };

@@ -3,28 +3,23 @@ import { MdMoreVert } from "react-icons/md";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import HistoryVideoCardMenu from "./HistoryVideoCardMenu";
+import { Video } from "../types";
+import { useToggle } from "../hooks";
 
-type Props = {
-  _id: string;
-  title: string;
-  thumbnail: string;
-  channelIcon: string;
-  channelName: string;
-  videoLink: string;
-  category: string;
+type HistoryVideoCardProps = {
+  videoData: Video;
 };
 
-const HistoryVideoCard = ({ data }: { data: Props }): React.ReactElement => {
-  const [showVideoOptions, setShowVideoOptions] = useState<boolean>(false);
-
-  const toggleVideoOptions = (): void => {
-    setShowVideoOptions((prev) => !prev);
-  };
+const HistoryVideoCard = ({
+  videoData,
+}: HistoryVideoCardProps): React.ReactElement => {
+  const { show: showVideoOptions, toggle: toggleShowVideoOptions } =
+    useToggle();
 
   const router = useRouter();
 
   const navigate = () => {
-    router.push(`/video/${data._id}`);
+    router.push(`/video/${videoData.id}`);
   };
 
   return (
@@ -32,19 +27,19 @@ const HistoryVideoCard = ({ data }: { data: Props }): React.ReactElement => {
       <div className="relative aspect-video hover:cursor-pointer">
         <Image
           className=""
-          src={data.thumbnail}
+          src={videoData.thumbnail}
           alt=""
           fill
           onClick={navigate}
         />
-        {showVideoOptions && <HistoryVideoCardMenu />}
+        {showVideoOptions && <HistoryVideoCardMenu videoData={videoData} />}
       </div>
       <div className="grid grid-cols-8 pt-3">
         <div className="col-span-2 flex justify-center">
           <div className="relative h-10 w-10">
             <Image
               className="rounded-full"
-              src={data.channelIcon}
+              src={videoData.channelIcon}
               alt=""
               fill
             />
@@ -52,18 +47,18 @@ const HistoryVideoCard = ({ data }: { data: Props }): React.ReactElement => {
         </div>
         <div className="col-span-5 space-y-1">
           <h1 className="text-sm font-semibold leading-5 dark:text-gray-300">
-            {data.title.length > 50
-              ? `${data.title.slice(0, 50)}..`
-              : data.title}
+            {videoData.title.length > 50
+              ? `${videoData.title.slice(0, 50)}..`
+              : videoData.title}
           </h1>
           <h2 className="text-sm font-semibold dark:text-gray-400">
-            {data.channelName}
+            {videoData.channelName}
           </h2>
         </div>
         <div className="col-span-1 flex items-start justify-end">
           <span
             className="rounded-full p-1 hover:cursor-pointer dark:hover:bg-dark-hover"
-            onClick={toggleVideoOptions}
+            onClick={toggleShowVideoOptions}
           >
             <MdMoreVert className="rounded-full dark:text-gray-200" size={25} />
           </span>
