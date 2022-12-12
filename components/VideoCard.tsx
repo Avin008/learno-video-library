@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { MdMoreVert } from "react-icons/md";
-import { VideoCardMenu } from "../components";
+import { CreatePlaylistModal, VideoCardMenu } from "../components";
 import { useRouter } from "next/router";
 import { User, Video } from "../types";
 import { useToggle } from "../hooks";
@@ -8,15 +8,16 @@ import { useToggle } from "../hooks";
 type VideoCardProps = {
   videoData: Video;
   userData: User;
-  toggleShowPlaylistModal: () => void;
 };
 
 const VideoCard = ({
   videoData,
   userData,
-  toggleShowPlaylistModal,
 }: VideoCardProps): React.ReactElement => {
   const { show: showVideoOptions, toggle: toggleShowVideoOptions } =
+    useToggle();
+
+  const { show: showPlaylistModal, toggle: toggleShowPlaylistModal } =
     useToggle();
 
   const router = useRouter();
@@ -73,6 +74,13 @@ const VideoCard = ({
           </span>
         </div>
       </div>
+      {showPlaylistModal && (
+        <CreatePlaylistModal
+          userData={userData}
+          videoData={videoData}
+          toggleShowPlaylistModal={toggleShowPlaylistModal}
+        />
+      )}
     </div>
   );
 };

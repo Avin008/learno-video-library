@@ -19,5 +19,5 @@ export type User = {
   liked: Video[];
   watchLater: Video[];
   history: Video[];
-  playlist: any;
+  playlist: Playlist[];
 };

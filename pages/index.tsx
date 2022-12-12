@@ -1,15 +1,9 @@
 import { useState } from "react";
 import { VideoCard } from "../components";
-import { useGetCollectionData, useGetUserData } from "../hooks";
+import { useGetCollectionData, useGetUserData, useToggle } from "../hooks";
 import { Video } from "../types";
 
 export default function Home() {
-  const [showPlaylistModal, setShowPlaylistModal] = useState<boolean>(false);
-
-  const toggleShowPlaylistModal = (): void => {
-    setShowPlaylistModal((prev) => !prev);
-  };
-
   const {
     data: videos,
     isLoading: isvideosLoading,
@@ -29,7 +23,6 @@ export default function Home() {
           key={videoData.id}
           videoData={videoData}
           userData={userData}
-          toggleShowPlaylistModal={toggleShowPlaylistModal}
         />
       ))}
     </div>

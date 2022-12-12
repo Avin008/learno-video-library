@@ -1,23 +1,29 @@
-import { useState } from "react";
 import { MdClose } from "react-icons/md";
+import { useToggle } from "../hooks";
+import { User, Video } from "../types";
+import { isVideoInPlaylist } from "../utility";
+
+type CreatePlaylistModalProps = {
+  userData: User;
+  videoData: Video;
+  toggleShowPlaylistModal: () => void;
+};
 
 const CreatePlaylistModal = ({
-  togglePlaylistModal,
-}: {
-  togglePlaylistModal: () => void;
-}): React.ReactElement => {
-  const [showError, setShowError] = useState<boolean>(false);
+  userData,
+  videoData,
+  toggleShowPlaylistModal,
+}: CreatePlaylistModalProps): React.ReactElement => {
+  const { show: showError, toggle: toggleError } = useToggle();
 
   const handlePlaylistModalClose = (e: React.SyntheticEvent) => {
     e.stopPropagation();
   };
 
-  const data = ["Sports", "Music", "Entertainment"];
-
   return (
     <div
       className="fixed top-0 bottom-0 left-0 right-0 z-20 flex items-center justify-center bg-black bg-opacity-30"
-      onClick={togglePlaylistModal}
+      onClick={toggleShowPlaylistModal}
     >
       <div
         className="mx-2 h-fit w-80 rounded-md shadow-md dark:bg-dark-background"
@@ -29,22 +35,27 @@ const CreatePlaylistModal = ({
           </h1>
           <MdClose
             className="text-2xl hover:cursor-pointer dark:text-dark-text"
-            onClick={togglePlaylistModal}
+            onClick={toggleShowPlaylistModal}
           />
         </div>
         <ul className="h-40 space-y-3 overflow-y-scroll p-2 shadow-inner dark:text-dark-text">
-          {data.map((x) => (
+          {userData.playlist.map((playlist) => (
             <li
               className="flex items-center gap-3 p-2 hover:cursor-pointer"
-              key={x}
+              key={playlist.id}
             >
               <input
                 className="h-4 w-4 border-2 dark:border-dark-primary"
                 type="checkbox"
                 name=""
                 id=""
+                checked={
+                  isVideoInPlaylist(userData.playlist!, videoData!).status &&
+                  isVideoInPlaylist(userData.playlist!, videoData!).playlist!
+                    .id === playlist.id
+                }
               />
-              {x}
+              {playlist.name}
             </li>
           ))}
         </ul>
@@ -66,7 +77,7 @@ const CreatePlaylistModal = ({
             {" "}
             <button
               className="w-full rounded-md p-1 dark:bg-dark-primary dark:text-dark-text"
-              onClick={() => setShowError((prev) => !prev)}
+              onClick={toggleError}
             >
               Create new playlist
             </button>

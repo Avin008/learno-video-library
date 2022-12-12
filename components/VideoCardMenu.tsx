@@ -60,7 +60,7 @@ const VideoCardMenu = ({
           <MdThumbUp /> ADD TO LIKE
         </li>
       )}
-      {authStatus && isVideoInPlaylist(userData.playlist, videoData) ? (
+      {authStatus && isVideoInPlaylist(userData.playlist, videoData).status ? (
         <li
           className="flex items-center gap-2 p-2 transition-all dark:hover:bg-dark-hover"
           onClick={toggleShowPlaylistModal}
