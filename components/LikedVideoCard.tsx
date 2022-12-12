@@ -3,18 +3,13 @@ import { MdMoreVert } from "react-icons/md";
 import LikedVideoCardMenu from "./LikedVideoCardMenu";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { Video } from "../types";
 
-type Props = {
-  _id: string;
-  title: string;
-  thumbnail: string;
-  channelIcon: string;
-  channelName: string;
-  videoLink: string;
-  category: string;
-};
-
-const LikedVideoCard = ({ data }: { data: Props }): React.ReactElement => {
+const LikedVideoCard = ({
+  videoData,
+}: {
+  videoData: Video;
+}): React.ReactElement => {
   const [showVideoOptions, setShowVideoOptions] = useState<boolean>(false);
 
   const toggleVideoOptions = (): void => {
@@ -24,7 +19,7 @@ const LikedVideoCard = ({ data }: { data: Props }): React.ReactElement => {
   const router = useRouter();
 
   const navigate = () => {
-    router.push(`/video/${data._id}`);
+    router.push(`/video/${videoData.id}`);
   };
 
   return (
@@ -32,7 +27,7 @@ const LikedVideoCard = ({ data }: { data: Props }): React.ReactElement => {
       <div className="relative aspect-video hover:cursor-pointer">
         <Image
           className=""
-          src={data.thumbnail}
+          src={videoData.thumbnail}
           alt=""
           fill
           onClick={navigate}
@@ -44,7 +39,7 @@ const LikedVideoCard = ({ data }: { data: Props }): React.ReactElement => {
           <div className="relative h-10 w-10">
             <Image
               className="rounded-full"
-              src={data.channelIcon}
+              src={videoData.channelIcon}
               alt=""
               fill
             />
@@ -52,12 +47,12 @@ const LikedVideoCard = ({ data }: { data: Props }): React.ReactElement => {
         </div>
         <div className="col-span-5 space-y-1">
           <h1 className="text-sm font-semibold leading-5 dark:text-gray-300">
-            {data.title.length > 50
-              ? `${data.title.slice(0, 50)}..`
-              : data.title}
+            {videoData.title.length > 50
+              ? `${videoData.title.slice(0, 50)}..`
+              : videoData.title}
           </h1>
           <h2 className="text-sm font-semibold dark:text-gray-400">
-            {data.channelName}
+            {videoData.channelName}
           </h2>
         </div>
         <div className="col-span-1 flex items-start justify-end">
