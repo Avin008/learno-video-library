@@ -1,19 +1,21 @@
 import Image from "next/image";
 import { MdMoreVert } from "react-icons/md";
-import VideoCardMenu from "./VideoCardMenu";
+import { VideoCardMenu } from "../components";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { User, Video } from "../types";
 
+type VideoCardProps = {
+  videoData: Video;
+  userData: User;
+  toggleShowPlaylistModal: () => void;
+};
+
 const VideoCard = ({
   videoData,
   userData,
-  togglePlaylistModal,
-}: {
-  videoData: Video;
-  userData: User;
-  togglePlaylistModal: () => void;
-}): React.ReactElement => {
+  toggleShowPlaylistModal,
+}: VideoCardProps): React.ReactElement => {
   const [showVideoOptions, setShowVideoOptions] = useState<boolean>(false);
 
   const toggleVideoOptions = (): void => {
@@ -38,7 +40,7 @@ const VideoCard = ({
         />
         {showVideoOptions && (
           <VideoCardMenu
-            togglePlaylistModal={togglePlaylistModal}
+            toggleShowPlaylistModal={toggleShowPlaylistModal}
             userData={userData}
             videoData={videoData}
           />

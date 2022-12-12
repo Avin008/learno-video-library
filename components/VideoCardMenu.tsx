@@ -1,40 +1,37 @@
 import { useRouter } from "next/router";
 import { MdPlaylistAdd, MdThumbUp, MdWatchLater } from "react-icons/md";
+import { useAuthStore } from "../store";
+import { User, Video } from "../types";
 import {
   useAddToLiked,
   useAddTOWatchLater,
   useRemoveFromWatchLater,
+  useRemoveFromLiked,
 } from "../hooks";
-import useRemoveFromLiked from "../hooks/useRemoveFromLiked";
-import { useAuthStore } from "../store";
-import { User, Video } from "../types";
-import isVideoInPlaylist from "../utility/isVideoInPlaylist";
 
-const VideoCardMenu = ({
-  togglePlaylistModal,
-  userData,
-  videoData,
-}: {
-  togglePlaylistModal: () => void;
+import {
+  isVideoInLiked,
+  isVideoInPlaylist,
+  isVideoInWatchLater,
+} from "../utility";
+
+type VideoCardMenuProps = {
   userData: User;
   videoData: Video;
-}): React.ReactElement => {
+  toggleShowPlaylistModal: () => void;
+};
+
+const VideoCardMenu = ({
+  userData,
+  videoData,
+  toggleShowPlaylistModal,
+}: VideoCardMenuProps): React.ReactElement => {
   const authStatus = useAuthStore((store: any) => store.authStatus);
   const token = useAuthStore((store: any) => store.token);
 
   const router = useRouter();
 
   const navigate = () => router.push("/login");
-
-  const isVideoInLiked = userData.liked.find((x) => x.id === videoData.id)
-    ? true
-    : false;
-
-  const isVideoInWatchLater = userData.watchLater.find(
-    (x) => x.id === videoData.id
-  )
-    ? true
-    : false;
 
   const { mutate: addToLiked } = useAddToLiked(videoData, token);
   const { mutate: removeFromLiked } = useRemoveFromLiked(videoData, token);
@@ -46,7 +43,7 @@ const VideoCardMenu = ({
 
   return (
     <ul className="bg-background absolute bottom-1 right-2 h-fit w-fit space-y-1 border py-1 text-xs shadow-md transition-all dark:border-dark-border dark:bg-dark-background dark:text-gray-200">
-      {authStatus && isVideoInLiked ? (
+      {authStatus && isVideoInLiked(userData, videoData) ? (
         <li
           className="flex items-center gap-2 p-2 transition-all dark:hover:bg-dark-hover"
           onClick={() => removeFromLiked()}
@@ -63,10 +60,10 @@ const VideoCardMenu = ({
           <MdThumbUp /> ADD TO LIKE
         </li>
       )}
-      {authStatus && isVideoInPlaylist(userData.playlist, videoData.id) ? (
+      {authStatus && isVideoInPlaylist(userData.playlist, videoData) ? (
         <li
           className="flex items-center gap-2 p-2 transition-all dark:hover:bg-dark-hover"
-          onClick={togglePlaylistModal}
+          onClick={toggleShowPlaylistModal}
         >
           <MdPlaylistAdd /> REMOVE FROM PLAYLIST
         </li>
@@ -74,13 +71,13 @@ const VideoCardMenu = ({
         <li
           className="flex items-center gap-2 p-2 transition-all dark:hover:bg-dark-hover"
           onClick={() => {
-            authStatus ? togglePlaylistModal() : navigate();
+            authStatus ? toggleShowPlaylistModal() : navigate();
           }}
         >
           <MdPlaylistAdd /> ADD TO PLAYLIST
         </li>
       )}
-      {authStatus && isVideoInWatchLater ? (
+      {authStatus && isVideoInWatchLater(userData, videoData) ? (
         <li
           className="flex items-center gap-2 p-2 transition-all dark:hover:bg-dark-hover"
           onClick={() => removeFromWatchLater()}
