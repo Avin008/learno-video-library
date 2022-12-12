@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { MdMoreVert } from "react-icons/md";
 import { VideoCardMenu } from "../components";
-import { useState } from "react";
 import { useRouter } from "next/router";
 import { User, Video } from "../types";
+import { useToggle } from "../hooks";
 
 type VideoCardProps = {
   videoData: Video;
@@ -16,11 +16,8 @@ const VideoCard = ({
   userData,
   toggleShowPlaylistModal,
 }: VideoCardProps): React.ReactElement => {
-  const [showVideoOptions, setShowVideoOptions] = useState<boolean>(false);
-
-  const toggleVideoOptions = (): void => {
-    setShowVideoOptions((prev) => !prev);
-  };
+  const { show: showVideoOptions, toggle: toggleShowVideoOptions } =
+    useToggle();
 
   const router = useRouter();
 
@@ -70,7 +67,7 @@ const VideoCard = ({
         <div className="col-span-1 flex items-start justify-end">
           <span
             className="rounded-full p-1 hover:cursor-pointer dark:hover:bg-dark-hover"
-            onClick={toggleVideoOptions}
+            onClick={toggleShowVideoOptions}
           >
             <MdMoreVert className="rounded-full dark:text-gray-200" size={25} />
           </span>

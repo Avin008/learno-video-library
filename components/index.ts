@@ -1,3 +1,4 @@
+import useToggle from "../hooks/useToggle";
 import CreatePlaylistModal from "./CreatePlaylistModal";
 import HistoryVideoCard from "./HistoryVideoCard";
 import Layout from "./Layout";
@@ -22,4 +23,5 @@ export {
   PlaylistVideoCard,
   WatchLaterVideoCard,
   VideoCardMenu,
+  useToggle,
 };

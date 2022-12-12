@@ -5,6 +5,7 @@ import useGetCollectionData from "./useGetCollectionData";
 import useGetUserData from "./useGetUserData";
 import useRemoveFromLiked from "./useRemoveFromLiked";
 import useRemoveFromWatchLater from "./useRemoveFromWatchLater";
+import useToggle from "./useToggle";
 
 export {
   useAuth,
@@ -14,4 +15,5 @@ export {
   useRemoveFromLiked,
   useRemoveFromWatchLater,
   useAddTOWatchLater,
+  useToggle,
 };
