@@ -14,6 +14,7 @@ import {
 } from "firebase/firestore";
 import { Video } from "../types";
 import { auth, db } from "./firebase";
+import { uuidv4 as uuid } from "@firebase/util";
 
 const getCollectionData = async (collectionName: string) => {
   const collectionRef = collection(db, collectionName);
@@ -90,6 +91,22 @@ const signupUser = async (email: string, password: string) => {
   return userData;
 };
 
+const removePlaylist = async (userDocumentId: string, playlistObj: any) => {
+  const docRef = doc(db, "users", userDocumentId);
+  await updateDoc(docRef, { playlist: arrayRemove(playlistObj) });
+};
+
+const createPlaylist = async (userDocumentId: string, playlistName: string) => {
+  const docRef = doc(db, "users", userDocumentId);
+  await updateDoc(docRef, {
+    playlist: arrayUnion({
+      id: uuid(),
+      name: playlistName,
+      videos: [],
+    }),
+  });
+};
+
 export {
   getCollectionData,
   getSingleDoc,
@@ -102,4 +119,6 @@ export {
   removeFromWatchLater,
   addToHistory,
   removeFromHistory,
+  removePlaylist,
+  createPlaylist,
 };

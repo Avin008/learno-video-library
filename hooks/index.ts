@@ -1,3 +1,4 @@
+import useAddPlaylist from "./useAddPlaylist";
 import useAddToHistory from "./useAddToHistory";
 import useAddToLiked from "./useAddToLiked";
 import useAddTOWatchLater from "./useAddToWatchLater";
@@ -8,6 +9,7 @@ import useGetVideoData from "./useGetVideoData";
 import useRemoveFromHistory from "./useRemoveFromHistory";
 import useRemoveFromLiked from "./useRemoveFromLiked";
 import useRemoveFromWatchLater from "./useRemoveFromWatchLater";
+import useRemovePlaylist from "./useRemovePlaylist";
 import useToggle from "./useToggle";
 
 export {
@@ -22,4 +24,6 @@ export {
   useAddToHistory,
   useRemoveFromHistory,
   useGetVideoData,
+  useRemovePlaylist,
+  useAddPlaylist,
 };
