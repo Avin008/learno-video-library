@@ -3,6 +3,7 @@ import CreatePlaylistModal from "./CreatePlaylistModal";
 import HistoryVideoCard from "./HistoryVideoCard";
 import Layout from "./Layout";
 import LikedVideoCard from "./LikedVideoCard";
+import LoadingSpinner from "./LoadingSpinner";
 import Navbar from "./Navbar";
 import PlaylistVideoCard from "./PlaylistVideoCard";
 import SideBar from "./Sidebar";
@@ -24,4 +25,5 @@ export {
   WatchLaterVideoCard,
   VideoCardMenu,
   useToggle,
+  LoadingSpinner,
 };
