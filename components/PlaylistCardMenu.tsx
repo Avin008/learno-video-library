@@ -1,9 +1,22 @@
 import React from "react";
 import { MdPlaylistAdd, MdThumbUp, MdWatchLater } from "react-icons/md";
+import { useRemovePlaylist } from "../hooks";
+import { User } from "../types";
 
-const PlaylistCardMenu = (): React.ReactElement => {
+type PlaylistCardMenuProps = {
+  userData: User;
+  playlistData: any;
+};
+
+const PlaylistCardMenu = ({
+  userData,
+  playlistData,
+}: PlaylistCardMenuProps): React.ReactElement => {
+  const { mutate: removePlaylist } = useRemovePlaylist(playlistData);
+
   const handleClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
+    removePlaylist();
   };
 
   return (

@@ -28,7 +28,7 @@ const VideoCard = ({
     mutate: addToHistory,
     isLoading,
     isError,
-  } = useAddToHistory(videoData, userData.id);
+  } = useAddToHistory(videoData, userData?.id);
 
   const navigate = () => {
     router.push(`/video/${videoData.id}`);

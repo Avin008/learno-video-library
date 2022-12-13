@@ -1,10 +1,5 @@
 import Image from "next/image";
-import {
-  MdOutlineThumbUp,
-  MdPlaylistAdd,
-  MdThumbUp,
-  MdWatchLater,
-} from "react-icons/md";
+import { MdOutlineThumbUp, MdPlaylistAdd, MdWatchLater } from "react-icons/md";
 import { Video } from "../types";
 
 const SingleVideoCard = ({

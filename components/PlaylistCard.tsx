@@ -1,20 +1,18 @@
 import Image from "next/image";
 import { MdMoreVert } from "react-icons/md";
 import PlaylistCardMenu from "./PlaylistCardMenu";
-import { useState } from "react";
 import { useRouter } from "next/router";
-import { Playlist } from "../types";
+import { Playlist, User } from "../types";
+import { useToggle } from "../hooks";
 
 const PlaylistCard = ({
   playlistData,
+  userData,
 }: {
+  userData: User;
   playlistData: Playlist;
 }): React.ReactElement => {
-  const [showVideoOptions, setShowVideoOptions] = useState<boolean>(false);
-
-  const toggleVideoOptions = (): void => {
-    setShowVideoOptions((prev) => !prev);
-  };
+  const { show: showVideoOptions, toggle: toggleSetVideoOptions } = useToggle();
 
   const router = useRouter();
 
@@ -35,7 +33,9 @@ const PlaylistCard = ({
           fill
           onClick={navigate}
         />
-        {showVideoOptions && <PlaylistCardMenu />}
+        {showVideoOptions && (
+          <PlaylistCardMenu userData={userData} playlistData={playlistData} />
+        )}
         <div className="absolute top-0 bottom-0 left-[50%] right-0 flex items-center justify-center dark:bg-gray-800 dark:bg-opacity-70">
           <span className="text-3xl font-semibold dark:text-white">
             {playlistData.videos.length}
@@ -51,7 +51,7 @@ const PlaylistCard = ({
         <div className="col-span-2 flex items-start justify-end">
           <span
             className="rounded-full p-1 hover:cursor-pointer dark:hover:bg-dark-hover"
-            onClick={toggleVideoOptions}
+            onClick={toggleSetVideoOptions}
           >
             <MdMoreVert className="rounded-full dark:text-gray-200" size={25} />
           </span>

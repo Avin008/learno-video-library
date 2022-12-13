@@ -1,5 +1,6 @@
+import React, { useState } from "react";
 import { MdClose } from "react-icons/md";
-import { useToggle } from "../hooks";
+import { useAddPlaylist } from "../hooks";
 import { User, Video } from "../types";
 import { isVideoInPlaylist } from "../utility";
 
@@ -14,7 +15,20 @@ const CreatePlaylistModal = ({
   videoData,
   toggleShowPlaylistModal,
 }: CreatePlaylistModalProps): React.ReactElement => {
-  const { show: showError, toggle: toggleError } = useToggle();
+  const [playlist, setPlaylistName] = useState<{
+    name: null | string;
+  }>({ name: null });
+
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setPlaylistName((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const { mutate: addPlaylist } = useAddPlaylist(playlist.name!);
+
+  const createPlaylist = () => {
+    addPlaylist();
+  };
 
   const handlePlaylistModalClose = (e: React.SyntheticEvent) => {
     e.stopPropagation();
@@ -63,21 +77,22 @@ const CreatePlaylistModal = ({
           <input
             className="w-full border-b bg-transparent p-1 outline-none placeholder:text-gray-500 dark:border-dark-primary dark:text-dark-text"
             type="text"
-            name=""
+            name="playlistName"
             id=""
             required
             placeholder="playlist name"
+            onChange={inputHandler}
+            value={playlist.name!}
           />
-          {showError && (
+          {false && (
             <span className="font-medium text-red-500">
               playlist already exist!
             </span>
           )}
           <div className="w-full">
-            {" "}
             <button
               className="w-full rounded-md p-1 dark:bg-dark-primary dark:text-dark-text"
-              onClick={toggleError}
+              onClick={createPlaylist}
             >
               Create new playlist
             </button>
