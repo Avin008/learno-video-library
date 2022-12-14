@@ -5,6 +5,12 @@ import {
   MdPlaylistAdd,
   MdWatchLater,
 } from "react-icons/md";
+import {
+  useAddToLiked,
+  useAddTOWatchLater,
+  useRemoveFromLiked,
+  useRemoveFromWatchLater,
+} from "../hooks";
 import { useAuthStore } from "../store";
 import { User, Video } from "../types";
 import {
@@ -26,11 +32,26 @@ const SingleVideoCard = ({
     (store: any) => store.authStatus
   );
 
+  const token = useAuthStore(
+    (store: any) => store.token
+  );
+
   const router = useRouter();
 
   const navigate = () => {
     router.push("/login");
   };
+
+  const { mutate: addVideoToLiked } =
+    useAddToLiked(videoData, token);
+
+  const { mutate: removeVideoFromLiked } =
+    useRemoveFromLiked(videoData, token);
+
+  const { mutate: addToWatchLater } =
+    useAddTOWatchLater(videoData, token);
+  const { mutate: removeFromWatchLate } =
+    useRemoveFromWatchLater(videoData, token);
 
   return (
     <div className="space-y-3">
@@ -63,7 +84,12 @@ const SingleVideoCard = ({
         <div className="flex flex-wrap gap-5 text-xs dark:text-gray-100 sm:justify-end">
           {authStatus &&
           isVideoInLiked(userData, videoData) ? (
-            <span className="flex w-fit cursor-pointer items-center gap-2 rounded-md border p-1 dark:hover:bg-dark-hover lg:px-4">
+            <span
+              className="flex w-fit cursor-pointer items-center gap-2 rounded-md border p-1 dark:hover:bg-dark-hover lg:px-4"
+              onClick={() => {
+                removeVideoFromLiked();
+              }}
+            >
               <MdOutlineThumbUp size={18} />
               <span className="sm:hidden md:block">
                 REMOVE FROM LIKE
@@ -73,7 +99,9 @@ const SingleVideoCard = ({
             <span
               className="flex w-fit cursor-pointer items-center gap-2 rounded-md border p-1 dark:hover:bg-dark-hover lg:px-4"
               onClick={() => {
-                authStatus ? "" : navigate();
+                authStatus
+                  ? addVideoToLiked()
+                  : navigate();
               }}
             >
               <MdOutlineThumbUp size={18} />
@@ -120,7 +148,12 @@ const SingleVideoCard = ({
             userData,
             videoData
           ) ? (
-            <span className="border-primary dark:hover:bg-hover flex w-fit cursor-pointer items-center gap-2 rounded-md  border p-1 lg:px-4">
+            <span
+              className="border-primary dark:hover:bg-hover flex w-fit cursor-pointer items-center gap-2 rounded-md  border p-1 lg:px-4"
+              onClick={() => {
+                removeFromWatchLate();
+              }}
+            >
               <MdWatchLater size={18} />
               <span className="sm:hidden md:block">
                 REMOVE FROM WATCH LATER
@@ -130,7 +163,9 @@ const SingleVideoCard = ({
             <span
               className="border-primary dark:hover:bg-hover flex w-fit cursor-pointer items-center gap-2 rounded-md  border p-1 lg:px-4"
               onClick={() => {
-                authStatus ? "" : navigate();
+                authStatus
+                  ? addToWatchLater()
+                  : navigate();
               }}
             >
               <MdWatchLater size={18} />
