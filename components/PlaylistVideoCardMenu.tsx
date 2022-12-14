@@ -1,18 +1,38 @@
 import React from "react";
-import { MdPlaylistAdd, MdThumbUp, MdWatchLater } from "react-icons/md";
+import { MdPlaylistAdd } from "react-icons/md";
+import { useRemoveVideoFromPlaylist } from "../hooks";
+import { Playlist, User, Video } from "../types";
 
-const PlaylistCardMenu = (): React.ReactElement => {
-  const handleClick = (e: React.SyntheticEvent) => {
+const PlaylistCardMenu = ({
+  userData,
+  videoData,
+  playlistData,
+}: {
+  userData: User;
+  videoData: Video;
+  playlistData: Playlist;
+}): React.ReactElement => {
+  const { mutate: removeVideoFromPlaylist } =
+    useRemoveVideoFromPlaylist(
+      userData.playlist,
+      videoData
+    );
+
+  const handleClick = (
+    e: React.SyntheticEvent
+  ) => {
     e.stopPropagation();
+    removeVideoFromPlaylist(playlistData);
   };
 
   return (
-    <ul className="absolute bottom-1 right-2 z-10 h-fit w-fit space-y-1 border border-gray-600 bg-background bg-opacity-95 py-1 text-xs text-gray-200 shadow-md transition-all">
+    <ul className="absolute bottom-1 right-2 z-10 h-fit w-fit space-y-1 border border-gray-600 bg-opacity-95 py-1 text-xs text-gray-200 shadow-md transition-all dark:border-dark-border dark:bg-dark-background">
       <li
-        className="flex items-center gap-2 p-2 transition-all hover:bg-hover"
+        className="flex items-center gap-2 p-2 transition-all hover:bg-dark-hover"
         onClick={handleClick}
       >
-        <MdPlaylistAdd className="text-xl" /> REMOVE FROM PLAYLIST
+        <MdPlaylistAdd className="text-xl" />{" "}
+        REMOVE FROM PLAYLIST
       </li>
     </ul>
   );
