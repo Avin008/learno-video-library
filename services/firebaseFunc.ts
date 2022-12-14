@@ -180,6 +180,16 @@ const addVideoToPlaylist = async (
   });
 };
 
+const removeVideoFromPlaylist = async (
+  userDocumentId: string,
+  playlistData: Playlist[]
+) => {
+  const docRef = doc(db, "users", userDocumentId);
+  await updateDoc(docRef, {
+    playlist: playlistData,
+  });
+};
+
 export {
   getCollectionData,
   getSingleDoc,
@@ -195,4 +205,5 @@ export {
   removePlaylist,
   createPlaylist,
   addVideoToPlaylist,
+  removeVideoFromPlaylist,
 };

@@ -3,6 +3,7 @@ import { MdClose } from "react-icons/md";
 import {
   useAddPlaylist,
   useAddVideoToPlaylist,
+  useRemoveVideoFromPlaylist,
 } from "../hooks";
 import { User, Video } from "../types";
 import { isVideoInPlaylist } from "../utility";
@@ -40,6 +41,12 @@ const CreatePlaylistModal = ({
 
   const { mutate: addVideoToPlaylist } =
     useAddVideoToPlaylist(
+      userData.playlist,
+      videoData
+    );
+
+  const { mutate: removeVideoFromPlaylist } =
+    useRemoveVideoFromPlaylist(
       userData.playlist,
       videoData
     );
@@ -116,6 +123,9 @@ const CreatePlaylistModal = ({
                       videoData!
                     ).playlist!.id === playlist.id
                   ) {
+                    removeVideoFromPlaylist(
+                      playlist
+                    );
                   } else {
                     addVideoToPlaylist(playlist);
                   }
