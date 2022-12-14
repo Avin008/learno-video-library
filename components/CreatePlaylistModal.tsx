@@ -19,18 +19,41 @@ const CreatePlaylistModal = ({
     name: null | string;
   }>({ name: null });
 
-  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setPlaylistName((prev) => ({ ...prev, [name]: value }));
+  const [showError, setToggleShowError] =
+    useState(false);
+
+  const inputHandler = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setPlaylistName((prev) => ({
+      ...prev,
+      name: e.target.value,
+    }));
   };
 
-  const { mutate: addPlaylist } = useAddPlaylist(playlist.name!);
+  const { mutate: addPlaylist } = useAddPlaylist(
+    playlist.name!
+  );
 
   const createPlaylist = () => {
-    addPlaylist();
+    if (
+      userData.playlist.find(
+        (x) =>
+          x.name.toLowerCase() ===
+          playlist.name?.toLowerCase()
+      )
+    ) {
+      setToggleShowError(true);
+    } else {
+      addPlaylist();
+      setToggleShowError(false);
+      setPlaylistName({ name: "" });
+    }
   };
 
-  const handlePlaylistModalClose = (e: React.SyntheticEvent) => {
+  const handlePlaylistModalClose = (
+    e: React.SyntheticEvent
+  ) => {
     e.stopPropagation();
   };
 
@@ -55,18 +78,23 @@ const CreatePlaylistModal = ({
         <ul className="h-40 space-y-3 overflow-y-scroll p-2 shadow-inner dark:text-dark-text">
           {userData.playlist.map((playlist) => (
             <li
-              className="flex items-center gap-3 p-2 hover:cursor-pointer"
+              className="flex items-center gap-3 p-2"
               key={playlist.id}
             >
               <input
-                className="h-4 w-4 border-2 dark:border-dark-primary"
+                className="h-4 w-4 border-2 hover:cursor-pointer dark:border-dark-primary"
                 type="checkbox"
                 name=""
                 id=""
                 checked={
-                  isVideoInPlaylist(userData.playlist!, videoData!).status &&
-                  isVideoInPlaylist(userData.playlist!, videoData!).playlist!
-                    .id === playlist.id
+                  isVideoInPlaylist(
+                    userData.playlist!,
+                    videoData!
+                  ).status &&
+                  isVideoInPlaylist(
+                    userData.playlist!,
+                    videoData!
+                  ).playlist!.id === playlist.id
                 }
               />
               {playlist.name}
@@ -84,7 +112,7 @@ const CreatePlaylistModal = ({
             onChange={inputHandler}
             value={playlist.name!}
           />
-          {false && (
+          {showError && (
             <span className="font-medium text-red-500">
               playlist already exist!
             </span>
