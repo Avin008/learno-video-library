@@ -12,23 +12,41 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
-import { Video } from "../types";
+import { Playlist, Video } from "../types";
 import { auth, db } from "./firebase";
 import { uuidv4 as uuid } from "@firebase/util";
 
-const getCollectionData = async (collectionName: string) => {
-  const collectionRef = collection(db, collectionName);
-  return (await getDocs(collectionRef)).docs.map((x) => x.data());
+const getCollectionData = async (
+  collectionName: string
+) => {
+  const collectionRef = collection(
+    db,
+    collectionName
+  );
+  return (await getDocs(collectionRef)).docs.map(
+    (x) => x.data()
+  );
 };
 
-const getSingleDoc = async (collectionName: string, docID: string) => {
+const getSingleDoc = async (
+  collectionName: string,
+  docID: string
+) => {
   const docRef = doc(db, collectionName, docID);
   const documentData = await getDoc(docRef);
   return documentData.data();
 };
 
-const loginUser = async (email: string, password: string) => {
-  const userData = await signInWithEmailAndPassword(auth, email, password);
+const loginUser = async (
+  email: string,
+  password: string
+) => {
+  const userData =
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
   return userData;
 };
 
@@ -56,47 +74,92 @@ const setData = async (
   });
 };
 
-const addToLiked = async (userDocumentID: string, video: any) => {
+const addToLiked = async (
+  userDocumentID: string,
+  video: any
+) => {
   const docRef = doc(db, "users", userDocumentID);
-  await updateDoc(docRef, { liked: arrayUnion(video) });
+  await updateDoc(docRef, {
+    liked: arrayUnion(video),
+  });
 };
 
-const addToHistory = async (userDocumentID: string, video: any) => {
+const addToHistory = async (
+  userDocumentID: string,
+  video: any
+) => {
   const docRef = doc(db, "users", userDocumentID);
-  await updateDoc(docRef, { history: arrayUnion(video) });
+  await updateDoc(docRef, {
+    history: arrayUnion(video),
+  });
 };
 
-const removeFromHistory = async (userDocumentId: string, video: any) => {
+const removeFromHistory = async (
+  userDocumentId: string,
+  video: any
+) => {
   const docRef = doc(db, "users", userDocumentId);
-  await updateDoc(docRef, { history: arrayRemove(video) });
+  await updateDoc(docRef, {
+    history: arrayRemove(video),
+  });
 };
 
-const removeFromLiked = async (userDocumentID: string, video: any) => {
+const removeFromLiked = async (
+  userDocumentID: string,
+  video: any
+) => {
   const docRef = doc(db, "users", userDocumentID);
-  await updateDoc(docRef, { liked: arrayRemove(video) });
+  await updateDoc(docRef, {
+    liked: arrayRemove(video),
+  });
 };
 
-const addToWatchLater = async (userDocumentID: string, video: any) => {
+const addToWatchLater = async (
+  userDocumentID: string,
+  video: any
+) => {
   const docRef = doc(db, "users", userDocumentID);
-  await updateDoc(docRef, { watchLater: arrayUnion(video) });
+  await updateDoc(docRef, {
+    watchLater: arrayUnion(video),
+  });
 };
 
-const removeFromWatchLater = async (userDocumentID: string, video: any) => {
+const removeFromWatchLater = async (
+  userDocumentID: string,
+  video: any
+) => {
   const docRef = doc(db, "users", userDocumentID);
-  await updateDoc(docRef, { watchLater: arrayRemove(video) });
+  await updateDoc(docRef, {
+    watchLater: arrayRemove(video),
+  });
 };
 
-const signupUser = async (email: string, password: string) => {
-  const userData = createUserWithEmailAndPassword(auth, email, password);
+const signupUser = async (
+  email: string,
+  password: string
+) => {
+  const userData = createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
   return userData;
 };
 
-const removePlaylist = async (userDocumentId: string, playlistObj: any) => {
+const removePlaylist = async (
+  userDocumentId: string,
+  playlistObj: any
+) => {
   const docRef = doc(db, "users", userDocumentId);
-  await updateDoc(docRef, { playlist: arrayRemove(playlistObj) });
+  await updateDoc(docRef, {
+    playlist: arrayRemove(playlistObj),
+  });
 };
 
-const createPlaylist = async (userDocumentId: string, playlistName: string) => {
+const createPlaylist = async (
+  userDocumentId: string,
+  playlistName: string
+) => {
   const docRef = doc(db, "users", userDocumentId);
   await updateDoc(docRef, {
     playlist: arrayUnion({
@@ -104,6 +167,16 @@ const createPlaylist = async (userDocumentId: string, playlistName: string) => {
       name: playlistName,
       videos: [],
     }),
+  });
+};
+
+const addVideoToPlaylist = async (
+  userDocumentID: string,
+  playlistData: Playlist[]
+) => {
+  const docRef = doc(db, "users", userDocumentID);
+  await updateDoc(docRef, {
+    playlist: playlistData,
   });
 };
 
@@ -121,4 +194,5 @@ export {
   removeFromHistory,
   removePlaylist,
   createPlaylist,
+  addVideoToPlaylist,
 };

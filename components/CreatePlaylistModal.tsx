@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { MdClose } from "react-icons/md";
-import { useAddPlaylist } from "../hooks";
+import {
+  useAddPlaylist,
+  useAddVideoToPlaylist,
+} from "../hooks";
 import { User, Video } from "../types";
 import { isVideoInPlaylist } from "../utility";
 
@@ -34,6 +37,12 @@ const CreatePlaylistModal = ({
   const { mutate: addPlaylist } = useAddPlaylist(
     playlist.name!
   );
+
+  const { mutate: addVideoToPlaylist } =
+    useAddVideoToPlaylist(
+      userData.playlist,
+      videoData
+    );
 
   const createPlaylist = () => {
     if (
@@ -96,6 +105,21 @@ const CreatePlaylistModal = ({
                     videoData!
                   ).playlist!.id === playlist.id
                 }
+                onChange={() => {
+                  if (
+                    isVideoInPlaylist(
+                      userData.playlist!,
+                      videoData!
+                    ).status &&
+                    isVideoInPlaylist(
+                      userData.playlist!,
+                      videoData!
+                    ).playlist!.id === playlist.id
+                  ) {
+                  } else {
+                    addVideoToPlaylist(playlist);
+                  }
+                }}
               />
               {playlist.name}
             </li>

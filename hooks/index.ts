@@ -2,6 +2,7 @@ import useAddPlaylist from "./useAddPlaylist";
 import useAddToHistory from "./useAddToHistory";
 import useAddToLiked from "./useAddToLiked";
 import useAddTOWatchLater from "./useAddToWatchLater";
+import useAddVideoToPlaylist from "./useAddVideoToPlaylist";
 import useAuth from "./useAuth";
 import useGetCollectionData from "./useGetCollectionData";
 import useGetUserData from "./useGetUserData";
@@ -26,4 +27,5 @@ export {
   useGetVideoData,
   useRemovePlaylist,
   useAddPlaylist,
+  useAddVideoToPlaylist,
 };
