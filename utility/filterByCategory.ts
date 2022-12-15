@@ -1,3 +1,4 @@
+import { Video } from "../types";
 const filterByCategory = (
   videoData: Video[],
   category: string

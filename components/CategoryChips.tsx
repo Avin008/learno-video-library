@@ -20,7 +20,7 @@ const CategoryChips = ({
           key={x}
           className={`max-w-fit rounded-md border py-1 px-3 transition-all hover:cursor-pointer ${
             category === x
-              ? "bg-dark-primary font-semibold text-white"
+              ? "bg-dark-primary text-white"
               : "bg-dark-hover"
           } dark:border-gray-600 dark:text-dark-text`}
           onClick={() => {
