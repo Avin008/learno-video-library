@@ -1,5 +1,13 @@
+import filterByCategory from "./filterByCategory";
 import isVideoInLiked from "./isVideoInLiked";
 import isVideoInPlaylist from "./isVideoInPlaylist";
 import isVideoInWatchLater from "./isVideoInWatchLater";
+import removeDuplicate from "./removeDuplicate";
 
-export { isVideoInLiked, isVideoInPlaylist, isVideoInWatchLater };
+export {
+  isVideoInLiked,
+  isVideoInPlaylist,
+  isVideoInWatchLater,
+  removeDuplicate,
+  filterByCategory,
+};

@@ -1,4 +1,5 @@
 import useToggle from "../hooks/useToggle";
+import CategoryChips from "./CategoryChips";
 import CreatePlaylistModal from "./CreatePlaylistModal";
 import HistoryVideoCard from "./HistoryVideoCard";
 import Layout from "./Layout";
@@ -26,4 +27,5 @@ export {
   VideoCardMenu,
   useToggle,
   LoadingSpinner,
+  CategoryChips,
 };
