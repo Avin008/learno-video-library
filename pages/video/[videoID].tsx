@@ -1,15 +1,15 @@
-import Image from "next/image";
 import CreatePlaylistModal from "../../components/CreatePlaylistModal";
 import SingleVideoCard from "../../components/SingleVideoCard";
 import SuggestedVideoCard from "../../components/SuggestedVideoCard";
-import { data } from "../../data";
 import {
+  useGetCollectionData,
   useGetUserData,
   useGetVideoData,
   useToggle,
 } from "../../hooks";
 import { useRouter } from "next/router";
 import { LoadingSpinner } from "../../components";
+import { Video } from "../../types";
 
 const SingleVideoPage =
   (): React.ReactElement => {
@@ -36,6 +36,12 @@ const SingleVideoPage =
       isError: isUserDataError,
     } = useGetUserData();
 
+    const {
+      data: SuggestedVideoData,
+      isLoading: isSuggestedVideoData,
+      isError: isSuggestedVideoDataError,
+    } = useGetCollectionData("videos");
+
     return (
       <div className="mt-2 grid gap-5 px-2 sm:col-span-12 sm:grid-cols-1 md:grid-cols-8 lg:col-span-10">
         {isVideoDataLoading ? (
@@ -54,9 +60,12 @@ const SingleVideoPage =
         )}
         {!isVideoDataLoading && (
           <div className="space-y-5 p-1 md:col-span-3">
-            {data.map((x) => (
+            {SuggestedVideoData.filter(
+              (data: Video) =>
+                data.id !== videoData.id
+            ).map((x: Video) => (
               <SuggestedVideoCard
-                key={x._id}
+                key={x.id}
                 videoData={x}
               />
             ))}

@@ -1,5 +1,12 @@
-import { LoadingSpinner, VideoCard } from "../components";
-import { useGetCollectionData, useGetUserData, useToggle } from "../hooks";
+import {
+  LoadingSpinner,
+  VideoCard,
+} from "../components";
+import {
+  useGetCollectionData,
+  useGetUserData,
+  useToggle,
+} from "../hooks";
 import { Video } from "../types";
 
 export default function Home() {
