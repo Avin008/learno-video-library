@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
 import SideBar from "./Sidebar";
 import { Inter } from "@next/font/google";
+import styles from "../styles/Layout.module.css";
 import {
   useSidebarStore,
   useThemeStore,
@@ -31,7 +32,9 @@ const Layout = ({
         <Navbar />
         <main className=" mt-16 grid min-h-full grid-cols-12 sm:relative lg:static">
           <div
-            className={`col-span-2 border-r transition-all dark:border-dark-border dark:bg-dark-background sm:absolute sm:bottom-0 sm:top-0 sm:z-10 lg:static ${
+            className={` ${
+              styles.container
+            } col-span-2 border-r transition-all dark:border-dark-border dark:bg-dark-background sm:absolute sm:bottom-0 sm:top-0 sm:z-10 lg:static ${
               sidebar ? "sm:block" : "sm:hidden"
             } lg:block`}
           >
