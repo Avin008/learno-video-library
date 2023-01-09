@@ -1,16 +1,33 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { MdOutlineDarkMode, MdLightMode, MdOutlineMenu } from "react-icons/md";
+import {
+  MdOutlineDarkMode,
+  MdLightMode,
+  MdOutlineMenu,
+} from "react-icons/md";
 import { useAuth } from "../hooks";
-import { useSidebarStore, useThemeStore, useAuthStore } from "../store";
+import {
+  useSidebarStore,
+  useThemeStore,
+  useAuthStore,
+} from "../store";
 import { ClipLoader } from "react-spinners";
+import Searchbar from "./Searchbar";
 
 const Navbar = (): React.ReactElement => {
-  const expandSidebar = useSidebarStore((store) => store.expandSidebar);
+  const expandSidebar = useSidebarStore(
+    (store) => store.expandSidebar
+  );
   const darkMode = useThemeStore((store) => store.darkMode);
-  const toggleDarkMode = useThemeStore((store) => store.toggleDarkMode);
-  const addAuth = useAuthStore((store: any) => store.addAuth);
-  const removeAuth = useAuthStore((store: any) => store.removeAuth);
+  const toggleDarkMode = useThemeStore(
+    (store) => store.toggleDarkMode
+  );
+  const addAuth = useAuthStore(
+    (store: any) => store.addAuth
+  );
+  const removeAuth = useAuthStore(
+    (store: any) => store.removeAuth
+  );
 
   const { status, loading, token } = useAuth();
 
@@ -27,10 +44,14 @@ const Navbar = (): React.ReactElement => {
             <MdOutlineMenu color="white" />
           </span>
           <Link href="/">
-            <div className="text-3xl text-dark-primary">Learno.</div>
+            <div className="text-3xl text-dark-primary">
+              Learno.
+            </div>
           </Link>
         </span>
       </div>
+
+      <Searchbar />
 
       <ul
         className="flex items-center

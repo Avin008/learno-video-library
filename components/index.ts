@@ -7,6 +7,7 @@ import LikedVideoCard from "./LikedVideoCard";
 import LoadingSpinner from "./LoadingSpinner";
 import Navbar from "./Navbar";
 import PlaylistVideoCard from "./PlaylistVideoCard";
+import Searchbar from "./Searchbar";
 import SideBar from "./Sidebar";
 import SuggestedVideoCard from "./SuggestedVideoCard";
 import VideoCard from "./VideoCard";
@@ -28,4 +29,5 @@ export {
   useToggle,
   LoadingSpinner,
   CategoryChips,
+  Searchbar,
 };
