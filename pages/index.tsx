@@ -24,11 +24,10 @@ export default function Home() {
     isError: isUserDataError,
   } = useGetUserData();
 
-  const [category, setCategory] =
-    useState<string>("All");
+  const [category, setCategory] = useState<string>("All");
 
   return (
-    <div className="space-y-3 p-2 sm:col-span-12 lg:col-span-10">
+    <div className="space-y-3 px-2 sm:col-span-12 lg:col-span-10">
       {!isvideosLoading && (
         <CategoryChips
           videoData={videos}
