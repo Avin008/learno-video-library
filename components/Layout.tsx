@@ -24,9 +24,9 @@ const Layout = ({
         <Navbar />
         <main className=" mt-16 grid min-h-screen grid-cols-12 sm:relative lg:static">
           <div
-            className={`col-span-2 border-r transition-all dark:border-dark-border dark:bg-dark-background sm:absolute sm:bottom-0 sm:top-0 sm:z-10 lg:static ${
+            className={`${
               sidebar ? "sm:block" : "sm:hidden"
-            } lg:block`}
+            } col-span-2 border-r transition-all dark:border-dark-border dark:bg-dark-background sm:absolute sm:bottom-0 sm:top-0 sm:z-10 lg:static lg:block`}
           >
             <SideBar />
           </div>
