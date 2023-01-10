@@ -19,7 +19,7 @@ const Layout = ({
   return (
     <div className={`${darkMode && "dark"}`}>
       <div
-        className={` min-h-screen border border-transparent dark:bg-dark-background ${inter.variable} font-sans`}
+        className={`min-h-screen border border-transparent dark:bg-dark-background ${inter.variable} font-sans`}
       >
         <Navbar />
         <main className=" mt-16 grid min-h-screen grid-cols-12 sm:relative lg:static">
