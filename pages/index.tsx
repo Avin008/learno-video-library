@@ -28,7 +28,7 @@ export default function Home() {
 
   return (
     <div className="space-y-3 px-2 sm:col-span-12 lg:col-span-10">
-      {!isvideosLoading && (
+      {/* {!isvideosLoading && (
         <CategoryChips
           videoData={videos}
           category={category}
@@ -49,7 +49,7 @@ export default function Home() {
             )
           )
         )}
-      </div>
+      </div> */}
     </div>
   );
 }
