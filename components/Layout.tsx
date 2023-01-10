@@ -26,7 +26,7 @@ const Layout = ({
           <div
             className={`${
               sidebar ? "sm:block" : "sm:hidden"
-            } col-span-2 border-r transition-all dark:border-dark-border dark:bg-dark-background sm:absolute sm:bottom-0 sm:top-0 sm:z-10 lg:static lg:block`}
+            } col-span-2 border-r transition-all dark:border-dark-border dark:bg-dark-background sm:absolute sm:bottom-0 sm:top-0 sm:z-30 lg:static lg:block`}
           >
             <SideBar />
           </div>
