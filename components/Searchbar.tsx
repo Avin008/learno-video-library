@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { MdSearch } from "react-icons/md";
+import { useSearch } from "../hooks";
 
 const Searchbar = () => {
   const [searchKey, setSearchKey] = useState<string>("");
+
+  const { searchData, isLoading, isError } = useSearch();
 
   return (
     <div className="relative w-4/12 space-y-2 rounded-md">
@@ -23,18 +26,22 @@ const Searchbar = () => {
       </div>
       {searchKey && (
         <ul className="absolute left-0 right-0 h-fit rounded-md border border-dark-border bg-dark-background py-1 shadow-md">
-          {[
-            "React Master Class",
-            "Namaste Javascript",
-            "Dragon Ball",
-          ].map((x) => (
-            <li
-              key={x}
-              className="p-2 text-dark-text hover:cursor-pointer hover:bg-dark-hover"
-            >
-              {x}
-            </li>
-          ))}
+          {searchData
+            ?.filter(
+              (x) =>
+                x.title.toLowerCase().includes(searchKey) ||
+                x.channelName
+                  .toLowerCase()
+                  .includes(searchKey)
+            )
+            .map((x) => (
+              <li
+                key={x.id}
+                className="p-2 text-dark-text hover:cursor-pointer hover:bg-dark-hover"
+              >
+                {x.title}
+              </li>
+            ))}
         </ul>
       )}
     </div>

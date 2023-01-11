@@ -12,6 +12,7 @@ import useRemoveFromLiked from "./useRemoveFromLiked";
 import useRemoveFromWatchLater from "./useRemoveFromWatchLater";
 import useRemovePlaylist from "./useRemovePlaylist";
 import useRemoveVideoFromPlaylist from "./useRemoveVideoFromPlaylist";
+import useSearch from "./useSearch";
 import useToggle from "./useToggle";
 
 export {
@@ -30,4 +31,5 @@ export {
   useAddPlaylist,
   useAddVideoToPlaylist,
   useRemoveVideoFromPlaylist,
+  useSearch,
 };
