@@ -28,7 +28,10 @@ const Searchbar = () => {
             "Namaste Javascript",
             "Dragon Ball",
           ].map((x) => (
-            <li className="p-2 text-dark-text hover:cursor-pointer hover:bg-dark-hover">
+            <li
+              key={x}
+              className="p-2 text-dark-text hover:cursor-pointer hover:bg-dark-hover"
+            >
               {x}
             </li>
           ))}
