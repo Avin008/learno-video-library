@@ -1,10 +1,14 @@
+import { DocumentData } from "firebase/firestore";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { MdSearch } from "react-icons/md";
 import { useSearch } from "../hooks";
+import { Video } from "../types";
+import { searchFunc } from "../utility";
 
 const Searchbar = () => {
   const [searchKey, setSearchKey] = useState<string>("");
-
+  const router = useRouter();
   const { searchData, isLoading, isError } = useSearch();
 
   return (
@@ -24,24 +28,21 @@ const Searchbar = () => {
           <MdSearch size={25} />
         </span>
       </div>
-      {searchKey && (
-        <ul className="absolute left-0 right-0 h-fit rounded-md border border-dark-border bg-dark-background py-1 shadow-md">
-          {searchData
-            ?.filter(
-              (x) =>
-                x.title.toLowerCase().includes(searchKey) ||
-                x.channelName
-                  .toLowerCase()
-                  .includes(searchKey)
-            )
-            .map((x) => (
+      {searchFunc(searchData, searchKey) && searchKey && (
+        <ul className="absolute left-0 right-0 h-fit rounded-md bg-dark-background shadow-md">
+          {searchFunc(searchData, searchKey)?.map(
+            (x: Video) => (
               <li
                 key={x.id}
-                className="p-2 text-dark-text hover:cursor-pointer hover:bg-dark-hover"
+                className="border border-dark-border p-2 text-dark-text hover:cursor-pointer hover:bg-dark-hover"
+                onClick={() => {
+                  router.push(`/video/${x.id}`);
+                }}
               >
                 {x.title}
               </li>
-            ))}
+            )
+          )}
         </ul>
       )}
     </div>
