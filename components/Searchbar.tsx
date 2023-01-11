@@ -18,6 +18,7 @@ const Searchbar = () => {
           className="h-full w-11/12 bg-transparent px-4 text-gray-300 outline-none placeholder-shown:border-gray-700"
           type="text"
           placeholder="Search Videos"
+          value={searchKey}
           onChange={(
             e: React.ChangeEvent<HTMLInputElement>
           ) => {
@@ -37,6 +38,7 @@ const Searchbar = () => {
                 className="border border-dark-border p-2 text-dark-text hover:cursor-pointer hover:bg-dark-hover"
                 onClick={() => {
                   router.push(`/video/${x.id}`);
+                  setSearchKey("");
                 }}
               >
                 {x.title}
