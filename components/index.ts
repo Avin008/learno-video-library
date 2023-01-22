@@ -9,6 +9,7 @@ import Navbar from "./Navbar";
 import PlaylistVideoCard from "./PlaylistVideoCard";
 import Searchbar from "./Searchbar";
 import SideBar from "./Sidebar";
+import SingleVideoCard from "./SingleVideoCard";
 import SuggestedVideoCard from "./SuggestedVideoCard";
 import VideoCard from "./VideoCard";
 import VideoCardMenu from "./VideoCardMenu";
@@ -30,4 +31,5 @@ export {
   LoadingSpinner,
   CategoryChips,
   Searchbar,
+  SingleVideoCard,
 };
