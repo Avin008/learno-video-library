@@ -1,5 +1,6 @@
 import {
   CategoryChips,
+  Container,
   LoadingSpinner,
   VideoCard,
 } from "../components";
@@ -35,10 +36,9 @@ export default function Home() {
           categorySetterFunc={setCategory}
         />
       )}
-      <div className="grid gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {isvideosLoading ? (
-          <LoadingSpinner />
-        ) : (
+      <Container>
+        {isvideosLoading && <LoadingSpinner />}
+        {!isvideosLoading &&
           filterByCategory(videos, category).map(
             (videoData: Video) => (
               <VideoCard
@@ -47,9 +47,8 @@ export default function Home() {
                 userData={userData}
               />
             )
-          )
-        )}
-      </div>
+          )}
+      </Container>
     </div>
   );
 }

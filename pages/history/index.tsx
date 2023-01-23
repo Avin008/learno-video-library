@@ -1,6 +1,8 @@
-import { LoadingSpinner } from "../../components";
+import {
+  Container,
+  LoadingSpinner,
+} from "../../components";
 import HistoryVideoCard from "../../components/HistoryVideoCard";
-import { data } from "../../data";
 import { useGetUserData } from "../../hooks";
 import { Video } from "../../types";
 
@@ -12,17 +14,15 @@ const HistoryPage = (): React.ReactElement => {
   } = useGetUserData();
 
   return (
-    <div className="grid gap-5 p-2 sm:col-span-12 sm:grid-cols-1 md:grid-cols-2 lg:col-span-10 lg:grid-cols-3">
+    <Container>
       {isUserDataLoading && <LoadingSpinner />}
-      {userData?.history?.map(
-        (videoData: Video) => (
-          <HistoryVideoCard
-            key={videoData.id}
-            videoData={videoData}
-          />
-        )
-      )}
-    </div>
+      {userData?.history?.map((videoData: Video) => (
+        <HistoryVideoCard
+          key={videoData.id}
+          videoData={videoData}
+        />
+      ))}
+    </Container>
   );
 };
 

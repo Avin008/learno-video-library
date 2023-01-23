@@ -1,5 +1,6 @@
 import useToggle from "../hooks/useToggle";
 import CategoryChips from "./CategoryChips";
+import Container from "./Container";
 import CreatePlaylistModal from "./CreatePlaylistModal";
 import HistoryVideoCard from "./HistoryVideoCard";
 import Layout from "./Layout";
@@ -32,4 +33,5 @@ export {
   CategoryChips,
   Searchbar,
   SingleVideoCard,
+  Container,
 };
