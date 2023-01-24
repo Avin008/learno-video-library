@@ -13,6 +13,7 @@ import {
 } from "../store";
 import { ClipLoader } from "react-spinners";
 import Searchbar from "./Searchbar";
+import Image from "next/image";
 
 const Navbar = (): React.ReactElement => {
   const expandSidebar = useSidebarStore(
@@ -44,8 +45,15 @@ const Navbar = (): React.ReactElement => {
             <MdOutlineMenu color="white" />
           </span>
           <Link href="/">
-            <div className="text-3xl text-dark-primary">
-              Learno.
+            <div className="flex items-center gap-2">
+              <div className="relative h-9 w-9">
+                <Image
+                  src="/star-of-david.png"
+                  fill
+                  alt=""
+                />
+              </div>
+              <span className="text-gray-400">Learno</span>
             </div>
           </Link>
         </span>
