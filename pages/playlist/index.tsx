@@ -13,7 +13,9 @@ const PlaylistPage = (): React.ReactElement => {
     isError: isUserDataError,
   } = useGetUserData();
 
-  isUserDataLoading && <LoadingSpinner />;
+  if (isUserDataLoading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <Container>
