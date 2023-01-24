@@ -13,19 +13,18 @@ const PlaylistPage = (): React.ReactElement => {
     isError: isUserDataError,
   } = useGetUserData();
 
+  isUserDataLoading && <LoadingSpinner />;
+
   return (
-    <div className="space-y-3  sm:col-span-12 lg:col-span-10">
-      {isUserDataLoading && <LoadingSpinner />}
-      <Container>
-        {userData?.playlist?.map((x: Playlist) => (
-          <PlaylistCard
-            key={x.id}
-            playlistData={x}
-            userData={userData}
-          />
-        ))}
-      </Container>
-    </div>
+    <Container>
+      {userData?.playlist?.map((x: Playlist) => (
+        <PlaylistCard
+          key={x.id}
+          playlistData={x}
+          userData={userData}
+        />
+      ))}
+    </Container>
   );
 };
 
