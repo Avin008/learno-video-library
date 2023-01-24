@@ -14,9 +14,12 @@ const WatchLaterPage = (): React.ReactElement => {
     isError: isUserDataError,
   } = useGetUserData();
 
+  if (isUserDataLoading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <Container>
-      {isUserDataLoading && <LoadingSpinner />}
       {userData?.watchLater?.length > 0 ? (
         userData?.watchLater?.map((x: Video) => (
           <WatchLaterVideoCard key={x.id} videoData={x} />
