@@ -12,7 +12,7 @@ const EmptyCategory = ({
   const router = useRouter();
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center space-y-3 sm:col-span-12 lg:col-span-10 lg:-translate-x-10">
+    <div className="mt-24 flex flex-col items-center space-y-3 sm:col-span-12 lg:col-span-10 lg:-translate-x-10">
       <div className="relative h-16 w-16">
         <img src={img} alt="" />
       </div>

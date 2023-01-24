@@ -2,6 +2,7 @@ import {
   Container,
   LoadingSpinner,
 } from "../../components";
+import EmptyCategory from "../../components/EmptyCategory";
 import PlaylistCard from "../../components/PlaylistCard";
 import { useGetUserData } from "../../hooks";
 import { Playlist } from "../../types";
@@ -19,13 +20,21 @@ const PlaylistPage = (): React.ReactElement => {
 
   return (
     <Container>
-      {userData?.playlist?.map((x: Playlist) => (
-        <PlaylistCard
-          key={x.id}
-          playlistData={x}
-          userData={userData}
+      {userData?.playlist.length > 0 ? (
+        userData?.playlist?.map((x: Playlist) => (
+          <PlaylistCard
+            key={x.id}
+            playlistData={x}
+            userData={userData}
+          />
+        ))
+      ) : (
+        <EmptyCategory
+          img="subscription.png"
+          link="/"
+          message="Your Playlist is Empty"
         />
-      ))}
+      )}
     </Container>
   );
 };
