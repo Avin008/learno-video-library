@@ -1,6 +1,9 @@
 import { useRouter } from "next/router";
 import {
   MdFavorite,
+  MdOutlineWatchLater,
+  MdOutlineHome,
+  MdOutlineFavoriteBorder,
   MdHistory,
   MdHome,
   MdOutlineFeaturedPlayList,
@@ -14,7 +17,10 @@ const SideBar = (): React.ReactElement => {
     router.push(`/${route}`);
   };
 
-  const activeLink = (route: string, routerTwo?: string) => {
+  const activeLink = (
+    route: string,
+    routerTwo?: string
+  ) => {
     return (
       router.asPath === route ||
       (routerTwo && router.pathname.includes(routerTwo))
@@ -29,12 +35,14 @@ const SideBar = (): React.ReactElement => {
         }`}
         onClick={() => navigate("/")}
       >
-        <MdHome size={20} /> HOME
+        <MdOutlineHome size={20} /> HOME
       </li>
       <li
         className={`flex items-center gap-3 p-4 hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
-          activeLink("/playlist", "/playlist/[PlaylistID]") &&
-          "dark:bg-dark-hover"
+          activeLink(
+            "/playlist",
+            "/playlist/[PlaylistID]"
+          ) && "dark:bg-dark-hover"
         }`}
         onClick={() => navigate("playlist")}
       >
@@ -46,7 +54,7 @@ const SideBar = (): React.ReactElement => {
         }`}
         onClick={() => navigate("liked")}
       >
-        <MdFavorite size={20} /> LIKED
+        <MdOutlineFavoriteBorder size={20} /> LIKED
       </li>
       <li
         className={`flex items-center gap-3 p-4 hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
@@ -54,7 +62,7 @@ const SideBar = (): React.ReactElement => {
         }`}
         onClick={() => navigate("watch-later")}
       >
-        <MdWatchLater size={20} /> WATCH LATER
+        <MdOutlineWatchLater size={20} /> WATCH LATER
       </li>
       <li
         className={`flex items-center gap-3 p-4 hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
