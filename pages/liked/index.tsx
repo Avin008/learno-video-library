@@ -14,9 +14,12 @@ const LikedPage = (): React.ReactElement => {
     isError: isUserDataError,
   } = useGetUserData();
 
+  if (isUserDataLoading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <Container>
-      {isUserDataLoading && <LoadingSpinner />}
       {userData?.liked.length > 0 ? (
         userData?.liked?.map((videoData: Video) => (
           <LikedVideoCard
