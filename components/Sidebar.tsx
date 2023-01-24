@@ -8,6 +8,8 @@ import {
   MdHome,
   MdOutlineFeaturedPlayList,
   MdWatchLater,
+  MdFeaturedPlayList,
+  MdOutlineHistory,
 } from "react-icons/md";
 
 const SideBar = (): React.ReactElement => {
@@ -30,15 +32,20 @@ const SideBar = (): React.ReactElement => {
   return (
     <ul className="sticky top-16 flex flex-col space-y-3">
       <li
-        className={`flex items-center gap-3 p-4 hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
+        className={`flex items-center gap-3 p-4 transition-all hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
           activeLink("/") && "dark:bg-dark-hover"
         }`}
         onClick={() => navigate("/")}
       >
-        <MdOutlineHome size={20} /> HOME
+        {activeLink("/") ? (
+          <MdHome size={20} />
+        ) : (
+          <MdOutlineHome size={20} />
+        )}{" "}
+        HOME
       </li>
       <li
-        className={`flex items-center gap-3 p-4 hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
+        className={`flex items-center gap-3 p-4 transition-all hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
           activeLink(
             "/playlist",
             "/playlist/[PlaylistID]"
@@ -46,31 +53,51 @@ const SideBar = (): React.ReactElement => {
         }`}
         onClick={() => navigate("playlist")}
       >
-        <MdOutlineFeaturedPlayList size={20} /> PLAYLIST
+        {activeLink("/playlist") ? (
+          <MdFeaturedPlayList size={20} />
+        ) : (
+          <MdOutlineFeaturedPlayList size={20} />
+        )}{" "}
+        PLAYLIST
       </li>
       <li
-        className={`flex items-center gap-3 p-4 hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
+        className={`flex items-center gap-3 p-4 transition-all hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
           activeLink("/liked") && "dark:bg-dark-hover"
         }`}
         onClick={() => navigate("liked")}
       >
-        <MdOutlineFavoriteBorder size={20} /> LIKED
+        {activeLink("/liked") ? (
+          <MdFavorite size={20} />
+        ) : (
+          <MdOutlineFavoriteBorder size={20} />
+        )}{" "}
+        LIKED
       </li>
       <li
-        className={`flex items-center gap-3 p-4 hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
+        className={`flex items-center gap-3 p-4 transition-all hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
           activeLink("/watch-later") && "dark:bg-dark-hover"
         }`}
         onClick={() => navigate("watch-later")}
       >
-        <MdOutlineWatchLater size={20} /> WATCH LATER
+        {activeLink("/watch-later") ? (
+          <MdWatchLater size={20} />
+        ) : (
+          <MdOutlineWatchLater size={20} />
+        )}{" "}
+        WATCH LATER
       </li>
       <li
-        className={`flex items-center gap-3 p-4 hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
+        className={`flex items-center gap-3 p-4 transition-all hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
           activeLink("/history") && "dark:bg-dark-hover"
         }`}
         onClick={() => navigate("history")}
       >
-        <MdHistory size={20} /> HISTORY
+        {activeLink("/history") ? (
+          <MdHistory size={20} />
+        ) : (
+          <MdOutlineHistory size={20} />
+        )}
+        HISTORY
       </li>
     </ul>
   );
