@@ -35,7 +35,7 @@ const Navbar = (): React.ReactElement => {
   const router = useRouter();
 
   return (
-    <div className="fixed left-0 right-0 top-0 z-40 flex h-16 items-center justify-between border-b px-8 shadow-md dark:border-dark-border dark:bg-dark-background">
+    <div className="fixed left-0 right-0 top-0 z-40 flex h-16 items-center justify-between border-b bg-white px-8 shadow-md dark:border-dark-border dark:bg-dark-background">
       <div className="flex items-center">
         <span className="flex items-center gap-3 text-2xl font-extrabold">
           <span
@@ -53,7 +53,9 @@ const Navbar = (): React.ReactElement => {
                   alt=""
                 />
               </div>
-              <span className="text-slate-300">Learno</span>
+              <span className="dark:text-slate-300">
+                Learno
+              </span>
             </div>
           </Link>
         </span>
