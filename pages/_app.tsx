@@ -1,16 +1,16 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { Inter } from "@next/font/google";
+import Layout from "../components/Layout";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
+const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${inter.variable} font-sans`}>
-      <Component {...pageProps} />
-    </main>
+    <QueryClientProvider client={queryClient}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </QueryClientProvider>
   );
 }
