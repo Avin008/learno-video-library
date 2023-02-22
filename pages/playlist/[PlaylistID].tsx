@@ -5,6 +5,7 @@ import {
 } from "../../components";
 import PlaylistVideoCard from "../../components/PlaylistVideoCard";
 import { useGetUserData } from "../../hooks";
+import { useAuthStore } from "../../store";
 import { Playlist, Video } from "../../types";
 
 const PlaylistPage = (): React.ReactElement => {
@@ -14,8 +15,14 @@ const PlaylistPage = (): React.ReactElement => {
     isError: isUserDataError,
   } = useGetUserData();
 
+  const authStatus = useAuthStore(
+    (store: any) => store.authStatus
+  );
+
   const router = useRouter();
   const { isReady } = router;
+
+  if (!authStatus) router.push("/login");
 
   const playlistID = router.query.playlistID as string;
 
@@ -30,14 +37,17 @@ const PlaylistPage = (): React.ReactElement => {
       {isUserDataLoading && <LoadingSpinner />}
       {!isUserDataLoading && (
         <Container>
-          {playlistData?.videos?.map((videoData: Video) => (
-            <PlaylistVideoCard
-              key={videoData.id}
-              videoData={videoData}
-              userData={userData}
-              playlistData={playlistData}
-            />
-          ))}
+          {authStatus &&
+            playlistData?.videos?.map(
+              (videoData: Video) => (
+                <PlaylistVideoCard
+                  key={videoData.id}
+                  videoData={videoData}
+                  userData={userData}
+                  playlistData={playlistData}
+                />
+              )
+            )}
         </Container>
       )}
     </div>

@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import {
   Container,
   LoadingSpinner,
@@ -5,6 +6,7 @@ import {
 import EmptyCategory from "../../components/EmptyCategory";
 import PlaylistCard from "../../components/PlaylistCard";
 import { useGetUserData } from "../../hooks";
+import { useAuthStore } from "../../store";
 import { Playlist } from "../../types";
 
 const PlaylistPage = (): React.ReactElement => {
@@ -14,13 +16,21 @@ const PlaylistPage = (): React.ReactElement => {
     isError: isUserDataError,
   } = useGetUserData();
 
+  const authStatus = useAuthStore(
+    (store: any) => store.authStatus
+  );
+
+  const router = useRouter();
+
+  if (!authStatus) router.push("/login");
+
   if (isUserDataLoading) {
     return <LoadingSpinner />;
   }
 
   return (
     <Container>
-      {userData?.playlist.length > 0 ? (
+      {authStatus && userData?.playlist.length > 0 ? (
         userData?.playlist?.map((x: Playlist) => (
           <PlaylistCard
             key={x.id}

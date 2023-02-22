@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import {
   Container,
   LoadingSpinner,
@@ -5,6 +6,7 @@ import {
 import EmptyCategory from "../../components/EmptyCategory";
 import HistoryVideoCard from "../../components/HistoryVideoCard";
 import { useGetUserData } from "../../hooks";
+import { useAuthStore } from "../../store";
 import { Video } from "../../types";
 
 const HistoryPage = (): React.ReactElement => {
@@ -14,13 +16,21 @@ const HistoryPage = (): React.ReactElement => {
     isError,
   } = useGetUserData();
 
+  const authStatus = useAuthStore(
+    (store: any) => store.authStatus
+  );
+
+  const router = useRouter();
+
+  if (!authStatus) router.push("/login");
+
   if (isUserDataLoading) {
     return <LoadingSpinner />;
   }
 
   return (
     <Container>
-      {userData?.history?.length > 0 ? (
+      {authStatus && userData?.history?.length > 0 ? (
         userData?.history?.map((videoData: Video) => (
           <HistoryVideoCard
             key={videoData.id}

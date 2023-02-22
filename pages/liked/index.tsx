@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import {
   Container,
   LoadingSpinner,
@@ -5,6 +6,7 @@ import {
 import EmptyCategory from "../../components/EmptyCategory";
 import LikedVideoCard from "../../components/LikedVideoCard";
 import { useGetUserData } from "../../hooks";
+import { useAuthStore } from "../../store";
 import { Video } from "../../types";
 
 const LikedPage = (): React.ReactElement => {
@@ -14,13 +16,21 @@ const LikedPage = (): React.ReactElement => {
     isError: isUserDataError,
   } = useGetUserData();
 
+  const authStatus = useAuthStore(
+    (store: any) => store.authStatus
+  );
+
+  const router = useRouter();
+
+  if (!authStatus) router.push("/login");
+
   if (isUserDataLoading) {
     return <LoadingSpinner />;
   }
 
   return (
     <Container>
-      {userData?.liked.length > 0 ? (
+      {authStatus && userData?.liked.length > 0 ? (
         userData?.liked?.map((videoData: Video) => (
           <LikedVideoCard
             key={videoData.id}
