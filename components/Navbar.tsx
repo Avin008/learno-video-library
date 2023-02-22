@@ -35,7 +35,7 @@ const Navbar = (): React.ReactElement => {
   const router = useRouter();
 
   return (
-    <div className="fixed left-0 right-0 top-0 z-40 flex h-16 items-center justify-between border-b bg-white px-8 shadow-md dark:border-dark-border dark:bg-dark-background">
+    <div className="fixed left-0 right-0 top-0 z-40 flex h-16 items-center justify-between border-b bg-white shadow-md dark:border-dark-border dark:bg-dark-background sm:px-4 lg:px-8">
       <div className="flex items-center">
         <span className="flex items-center gap-3 text-2xl font-extrabold">
           <span
@@ -53,7 +53,7 @@ const Navbar = (): React.ReactElement => {
                   alt=""
                 />
               </div>
-              <span className="dark:text-slate-300">
+              <span className="dark:text-slate-300 sm:hidden lg:block">
                 Learno
               </span>
             </div>
@@ -88,7 +88,7 @@ const Navbar = (): React.ReactElement => {
           </Link>
         )}
         <li
-          className="rounded-md px-3 py-2 text-sm font-medium transition-all  hover:cursor-pointer dark:text-gray-300 dark:hover:bg-dark-hover dark:hover:text-white sm:fixed sm:top-3 sm:right-5 md:static"
+          className="rounded-md px-3 py-2 text-sm font-medium transition-all hover:cursor-pointer dark:text-gray-300  dark:hover:bg-dark-hover dark:hover:text-white sm:fixed sm:top-3 sm:right-5 sm:hidden md:static lg:block"
           onClick={toggleDarkMode}
         >
           {darkMode ? (
