@@ -41,8 +41,8 @@ const WatchLaterPage = (): React.ReactElement => {
         ))
       ) : (
         <EmptyCategory
-          img="heart.png"
-          link=""
+          img="clock.png"
+          link="/"
           message="You Haven't Added any videos to watch later yet!"
         />
       )}
