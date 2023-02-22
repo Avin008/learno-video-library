@@ -8,6 +8,7 @@ import WatchLaterVideoCard from "../../components/WatchLaterVideoCard";
 import { useGetUserData } from "../../hooks";
 import { useAuthStore } from "../../store";
 import { Video } from "../../types";
+import { useEffect } from "react";
 
 const WatchLaterPage = (): React.ReactElement => {
   const {
@@ -22,7 +23,11 @@ const WatchLaterPage = (): React.ReactElement => {
 
   const router = useRouter();
 
-  if (!authStatus) router.push("/login");
+  useEffect(() => {
+    if (!authStatus) {
+      router.push("/login");
+    }
+  }, [authStatus]);
 
   if (isUserDataLoading) {
     return <LoadingSpinner />;

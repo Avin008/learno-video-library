@@ -8,6 +8,7 @@ import PlaylistCard from "../../components/PlaylistCard";
 import { useGetUserData } from "../../hooks";
 import { useAuthStore } from "../../store";
 import { Playlist } from "../../types";
+import { useEffect } from "react";
 
 const PlaylistPage = (): React.ReactElement => {
   const {
@@ -22,7 +23,11 @@ const PlaylistPage = (): React.ReactElement => {
 
   const router = useRouter();
 
-  if (!authStatus) router.push("/login");
+  useEffect(() => {
+    if (!authStatus) {
+      router.push("/login");
+    }
+  }, [authStatus]);
 
   if (isUserDataLoading) {
     return <LoadingSpinner />;

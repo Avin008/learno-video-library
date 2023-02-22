@@ -8,6 +8,7 @@ import HistoryVideoCard from "../../components/HistoryVideoCard";
 import { useGetUserData } from "../../hooks";
 import { useAuthStore } from "../../store";
 import { Video } from "../../types";
+import { useEffect } from "react";
 
 const HistoryPage = (): React.ReactElement => {
   const {
@@ -22,7 +23,11 @@ const HistoryPage = (): React.ReactElement => {
 
   const router = useRouter();
 
-  if (!authStatus) router.push("/login");
+  useEffect(() => {
+    if (!authStatus) {
+      router.push("/login");
+    }
+  }, [authStatus]);
 
   if (isUserDataLoading) {
     return <LoadingSpinner />;
@@ -39,7 +44,7 @@ const HistoryPage = (): React.ReactElement => {
         ))
       ) : (
         <EmptyCategory
-          img="heart.png"
+          img="history.png"
           message="History is Empty"
           link="/"
         />

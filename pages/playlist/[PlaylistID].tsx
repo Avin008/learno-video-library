@@ -7,6 +7,7 @@ import PlaylistVideoCard from "../../components/PlaylistVideoCard";
 import { useGetUserData } from "../../hooks";
 import { useAuthStore } from "../../store";
 import { Playlist, Video } from "../../types";
+import { useEffect } from "react";
 
 const PlaylistPage = (): React.ReactElement => {
   const {
@@ -22,7 +23,11 @@ const PlaylistPage = (): React.ReactElement => {
   const router = useRouter();
   const { isReady } = router;
 
-  if (!authStatus) router.push("/login");
+  useEffect(() => {
+    if (!authStatus) {
+      router.push("/login");
+    }
+  }, [authStatus]);
 
   const playlistID = router.query.playlistID as string;
 
