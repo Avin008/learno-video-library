@@ -20,7 +20,7 @@ const PlaylistCard = ({
   const router = useRouter();
 
   const navigate = () => {
-    router.push(`/playlist/${playlistData.id}`);
+    router.push(`playlist/${playlistData.id}`);
   };
 
   return (
