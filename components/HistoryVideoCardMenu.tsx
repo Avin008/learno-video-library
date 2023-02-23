@@ -22,9 +22,9 @@ const HistoryVideoCardMenu = ({
   };
 
   return (
-    <ul className="bg-background absolute bottom-1 right-2 z-10 h-fit w-fit space-y-1 border py-1 text-xs shadow-md transition-all dark:border-dark-border dark:bg-dark-background dark:text-gray-200">
+    <ul className="bg-background absolute bottom-1 right-2 z-10 h-fit w-fit space-y-1 border bg-white py-1 text-xs shadow-md transition-all dark:border-dark-border dark:bg-dark-background dark:text-gray-200">
       <li
-        className="flex items-center gap-2 p-2 transition-all dark:hover:bg-dark-hover"
+        className="flex items-center gap-2 p-2 transition-all hover:bg-gray-200 dark:hover:bg-dark-hover"
         onClick={handleClick}
       >
         <MdDelete className="text-xl" /> REMOVE FROM HISTORY
