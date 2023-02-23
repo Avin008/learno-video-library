@@ -48,8 +48,8 @@ const PlaylistCard = ({
             playlistData={playlistData}
           />
         )}
-        <div className="absolute top-0 bottom-0 left-[50%] right-0 flex items-center justify-center dark:bg-gray-800 dark:bg-opacity-70">
-          <span className="text-3xl font-semibold dark:text-white">
+        <div className="absolute top-0 bottom-0 left-[50%] right-0 flex items-center justify-center bg-gray-800 bg-opacity-70">
+          <span className="text-3xl font-semibold text-white">
             {playlistData.videos.length}
           </span>
         </div>
