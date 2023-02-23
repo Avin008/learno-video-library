@@ -23,8 +23,7 @@ const CreatePlaylistModal = ({
     name: null | string;
   }>({ name: null });
 
-  const [showError, setToggleShowError] =
-    useState(false);
+  const [showError, setToggleShowError] = useState(false);
 
   const inputHandler = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -40,10 +39,7 @@ const CreatePlaylistModal = ({
   );
 
   const { mutate: addVideoToPlaylist } =
-    useAddVideoToPlaylist(
-      userData.playlist,
-      videoData
-    );
+    useAddVideoToPlaylist(userData.playlist, videoData);
 
   const { mutate: removeVideoFromPlaylist } =
     useRemoveVideoFromPlaylist(
@@ -79,7 +75,7 @@ const CreatePlaylistModal = ({
       onClick={toggleShowPlaylistModal}
     >
       <div
-        className="mx-2 h-fit w-80 rounded-md shadow-md dark:bg-dark-background"
+        className="mx-2 h-fit w-80 rounded-md bg-white shadow-md dark:bg-dark-background"
         onClick={handlePlaylistModalClose}
       >
         <div className="flex items-center justify-between border-b p-2 dark:border-dark-border">
@@ -123,9 +119,7 @@ const CreatePlaylistModal = ({
                       videoData!
                     ).playlist!.id === playlist.id
                   ) {
-                    removeVideoFromPlaylist(
-                      playlist
-                    );
+                    removeVideoFromPlaylist(playlist);
                   } else {
                     addVideoToPlaylist(playlist);
                   }
@@ -153,7 +147,7 @@ const CreatePlaylistModal = ({
           )}
           <div className="w-full">
             <button
-              className="w-full rounded-md p-1 dark:bg-dark-primary dark:text-dark-text"
+              className="w-full rounded-md bg-dark-primary p-1 text-dark-text dark:text-dark-text"
               onClick={createPlaylist}
             >
               Create new playlist
