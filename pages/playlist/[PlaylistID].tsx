@@ -39,7 +39,7 @@ const PlaylistPage = (): React.ReactElement => {
 
   return (
     <div className="sm:col-span-12 lg:col-span-10">
-      {isUserDataLoading ? <LoadingSpinner />}
+      {isUserDataLoading && <LoadingSpinner />}
       {!isUserDataLoading && (
         <Container>
           {authStatus &&
@@ -52,7 +52,7 @@ const PlaylistPage = (): React.ReactElement => {
                   playlistData={playlistData}
                 />
               )
-            ): null}
+            )}
         </Container>
       )}
     </div>
