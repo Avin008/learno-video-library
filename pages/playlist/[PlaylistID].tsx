@@ -37,10 +37,6 @@ const PlaylistPage = (): React.ReactElement => {
       (x: Playlist) => x.id === playlistID
     );
 
-  console.log(playlistID);
-
-  console.log(playlistData);
-
   return (
     <div className="sm:col-span-12 lg:col-span-10">
       {isUserDataLoading && <LoadingSpinner />}
