@@ -1,5 +1,5 @@
 import React from "react";
-import { MdPlaylistAdd } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 import { useRemoveVideoFromPlaylist } from "../hooks";
 import { Playlist, User, Video } from "../types";
 
@@ -18,9 +18,7 @@ const PlaylistCardMenu = ({
       videoData
     );
 
-  const handleClick = (
-    e: React.SyntheticEvent
-  ) => {
+  const handleClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     removeVideoFromPlaylist(playlistData);
   };
@@ -31,8 +29,8 @@ const PlaylistCardMenu = ({
         className="flex items-center gap-2 p-2 transition-all hover:bg-dark-hover"
         onClick={handleClick}
       >
-        <MdPlaylistAdd className="text-xl" />{" "}
-        REMOVE FROM PLAYLIST
+        <MdDelete className="text-xl" /> REMOVE FROM
+        PLAYLIST
       </li>
     </ul>
   );
