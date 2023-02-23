@@ -9,6 +9,7 @@ import { useGetUserData } from "../../hooks";
 import { useAuthStore } from "../../store";
 import { Playlist } from "../../types";
 import { useEffect } from "react";
+import Head from "next/head";
 
 const PlaylistPage = (): React.ReactElement => {
   const {
@@ -34,25 +35,30 @@ const PlaylistPage = (): React.ReactElement => {
   }
 
   return (
-    <Container>
-      {authStatus ? (
-        userData?.playlist.length > 0 ? (
-          userData?.playlist?.map((x: Playlist) => (
-            <PlaylistCard
-              key={x.id}
-              playlistData={x}
-              userData={userData}
+    <>
+      <Head>
+        <title>Playlists | Learno</title>
+      </Head>
+      <Container>
+        {authStatus ? (
+          userData?.playlist.length > 0 ? (
+            userData?.playlist?.map((x: Playlist) => (
+              <PlaylistCard
+                key={x.id}
+                playlistData={x}
+                userData={userData}
+              />
+            ))
+          ) : (
+            <EmptyCategory
+              img="subscription.png"
+              link="/"
+              message="Your Playlist is Empty"
             />
-          ))
-        ) : (
-          <EmptyCategory
-            img="subscription.png"
-            link="/"
-            message="Your Playlist is Empty"
-          />
-        )
-      ) : null}
-    </Container>
+          )
+        ) : null}
+      </Container>
+    </>
   );
 };
 

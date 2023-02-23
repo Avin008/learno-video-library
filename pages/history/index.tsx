@@ -9,6 +9,7 @@ import { useGetUserData } from "../../hooks";
 import { useAuthStore } from "../../store";
 import { Video } from "../../types";
 import { useEffect } from "react";
+import Head from "next/head";
 
 const HistoryPage = (): React.ReactElement => {
   const {
@@ -34,24 +35,29 @@ const HistoryPage = (): React.ReactElement => {
   }
 
   return (
-    <Container>
-      {authStatus ? (
-        userData?.history?.length > 0 ? (
-          userData?.history?.map((videoData: Video) => (
-            <HistoryVideoCard
-              key={videoData.id}
-              videoData={videoData}
+    <>
+      <Head>
+        <title>History | Learno</title>
+      </Head>
+      <Container>
+        {authStatus ? (
+          userData?.history?.length > 0 ? (
+            userData?.history?.map((videoData: Video) => (
+              <HistoryVideoCard
+                key={videoData.id}
+                videoData={videoData}
+              />
+            ))
+          ) : (
+            <EmptyCategory
+              img="history.png"
+              message="History is Empty"
+              link="/"
             />
-          ))
-        ) : (
-          <EmptyCategory
-            img="history.png"
-            message="History is Empty"
-            link="/"
-          />
-        )
-      ) : null}
-    </Container>
+          )
+        ) : null}
+      </Container>
+    </>
   );
 };
 

@@ -8,6 +8,7 @@ import { useGetUserData } from "../../hooks";
 import { useAuthStore } from "../../store";
 import { Playlist, Video } from "../../types";
 import { useEffect } from "react";
+import Head from "next/head";
 
 const PlaylistPage = (): React.ReactElement => {
   const {
@@ -38,24 +39,29 @@ const PlaylistPage = (): React.ReactElement => {
     );
 
   return (
-    <div className="sm:col-span-12 lg:col-span-10">
-      {isUserDataLoading && <LoadingSpinner />}
-      {!isUserDataLoading && (
-        <Container>
-          {authStatus &&
-            playlistData?.videos?.map(
-              (videoData: Video) => (
-                <PlaylistVideoCard
-                  key={videoData.id}
-                  videoData={videoData}
-                  userData={userData}
-                  playlistData={playlistData}
-                />
-              )
-            )}
-        </Container>
-      )}
-    </div>
+    <>
+      <Head>
+        <title>Playlist | Learno</title>
+      </Head>
+      <div className="sm:col-span-12 lg:col-span-10">
+        {isUserDataLoading && <LoadingSpinner />}
+        {!isUserDataLoading && (
+          <Container>
+            {authStatus &&
+              playlistData?.videos?.map(
+                (videoData: Video) => (
+                  <PlaylistVideoCard
+                    key={videoData.id}
+                    videoData={videoData}
+                    userData={userData}
+                    playlistData={playlistData}
+                  />
+                )
+              )}
+          </Container>
+        )}
+      </div>
+    </>
   );
 };
 

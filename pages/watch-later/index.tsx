@@ -9,6 +9,7 @@ import { useGetUserData } from "../../hooks";
 import { useAuthStore } from "../../store";
 import { Video } from "../../types";
 import { useEffect } from "react";
+import Head from "next/head";
 
 const WatchLaterPage = (): React.ReactElement => {
   const {
@@ -34,21 +35,29 @@ const WatchLaterPage = (): React.ReactElement => {
   }
 
   return (
-    <Container>
-      {authStatus ? (
-        userData?.watchLater?.length > 0 ? (
-          userData?.watchLater?.map((x: Video) => (
-            <WatchLaterVideoCard key={x.id} videoData={x} />
-          ))
-        ) : (
-          <EmptyCategory
-            img="clock.png"
-            link="/"
-            message="You Haven't Added any videos to watch later yet!"
-          />
-        )
-      ) : null}
-    </Container>
+    <>
+      <Head>
+        <title>Watch Later | Learno</title>
+      </Head>
+      <Container>
+        {authStatus ? (
+          userData?.watchLater?.length > 0 ? (
+            userData?.watchLater?.map((x: Video) => (
+              <WatchLaterVideoCard
+                key={x.id}
+                videoData={x}
+              />
+            ))
+          ) : (
+            <EmptyCategory
+              img="clock.png"
+              link="/"
+              message="You Haven't Added any videos to watch later yet!"
+            />
+          )
+        ) : null}
+      </Container>
+    </>
   );
 };
 

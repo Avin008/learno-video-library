@@ -11,6 +11,7 @@ import {
 import { Video } from "../types";
 import { useState } from "react";
 import { filterByCategory } from "../utility";
+import Head from "next/head";
 
 export default function Home() {
   const {
@@ -28,27 +29,32 @@ export default function Home() {
   const [category, setCategory] = useState<string>("All");
 
   return (
-    <div className="space-y-3 px-2 sm:col-span-12 lg:col-span-10">
-      {!isvideosLoading && (
-        <CategoryChips
-          videoData={videos}
-          category={category}
-          categorySetterFunc={setCategory}
-        />
-      )}
-      <Container>
-        {isvideosLoading && <LoadingSpinner />}
-        {!isvideosLoading &&
-          filterByCategory(videos, category).map(
-            (videoData: Video) => (
-              <VideoCard
-                key={videoData.id}
-                videoData={videoData}
-                userData={userData}
-              />
-            )
-          )}
-      </Container>
-    </div>
+    <>
+      <Head>
+        <title>Home | Learno</title>
+      </Head>
+      <div className="space-y-3 px-2 sm:col-span-12 lg:col-span-10">
+        {!isvideosLoading && (
+          <CategoryChips
+            videoData={videos}
+            category={category}
+            categorySetterFunc={setCategory}
+          />
+        )}
+        <Container>
+          {isvideosLoading && <LoadingSpinner />}
+          {!isvideosLoading &&
+            filterByCategory(videos, category).map(
+              (videoData: Video) => (
+                <VideoCard
+                  key={videoData.id}
+                  videoData={videoData}
+                  userData={userData}
+                />
+              )
+            )}
+        </Container>
+      </div>
+    </>
   );
 }

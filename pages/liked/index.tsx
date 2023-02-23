@@ -9,6 +9,7 @@ import { useGetUserData } from "../../hooks";
 import { useAuthStore } from "../../store";
 import { Video } from "../../types";
 import { useEffect } from "react";
+import Head from "next/head";
 
 const LikedPage = (): React.ReactElement => {
   const {
@@ -34,24 +35,29 @@ const LikedPage = (): React.ReactElement => {
   }
 
   return (
-    <Container>
-      {authStatus ? (
-        userData?.liked.length > 0 ? (
-          userData?.liked?.map((videoData: Video) => (
-            <LikedVideoCard
-              key={videoData.id}
-              videoData={videoData}
+    <>
+      <Head>
+        <title>Liked | Learno</title>
+      </Head>
+      <Container>
+        {authStatus ? (
+          userData?.liked.length > 0 ? (
+            userData?.liked?.map((videoData: Video) => (
+              <LikedVideoCard
+                key={videoData.id}
+                videoData={videoData}
+              />
+            ))
+          ) : (
+            <EmptyCategory
+              img="heart.png"
+              message="You Haven't Liked any videos yet!"
+              link="/"
             />
-          ))
-        ) : (
-          <EmptyCategory
-            img="heart.png"
-            message="You Haven't Liked any videos yet!"
-            link="/"
-          />
-        )
-      ) : null}
-    </Container>
+          )
+        ) : null}
+      </Container>
+    </>
   );
 };
 
