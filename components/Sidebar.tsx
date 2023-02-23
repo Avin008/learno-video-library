@@ -52,7 +52,7 @@ const SideBar = (): React.ReactElement => {
         className={`flex items-center gap-3 p-4 transition-all hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
           activeLink(
             "/playlist",
-            "/playlist/[PlaylistID]"
+            "/playlist/[playlistID]"
           ) && "dark:bg-dark-hover"
         }`}
         onClick={() => {
