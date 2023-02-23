@@ -29,17 +29,13 @@ const PlaylistPage = (): React.ReactElement => {
     }
   }, [authStatus]);
 
-  const playlistID = router.query.playlistID as string;
+  const playlistID = router.query.PlaylistID as string;
 
   const playlistData =
     isReady &&
     userData?.playlist?.find(
       (x: Playlist) => x.id === playlistID
     );
-
-  console.log(playlistID);
-
-  console.log(playlistData);
 
   return (
     <div className="sm:col-span-12 lg:col-span-10">

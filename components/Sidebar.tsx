@@ -35,7 +35,8 @@ const SideBar = (): React.ReactElement => {
     <ul className="sticky top-16 flex flex-col space-y-3">
       <li
         className={`flex items-center gap-3 p-4 transition-all hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
-          activeLink("/") && "dark:bg-dark-hover"
+          activeLink("/") &&
+          "bg-gray-200 dark:bg-dark-hover"
         }`}
         onClick={() => {
           navigate("/");
@@ -52,8 +53,8 @@ const SideBar = (): React.ReactElement => {
         className={`flex items-center gap-3 p-4 transition-all hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
           activeLink(
             "/playlist",
-            "/playlist/[playlistID]"
-          ) && "dark:bg-dark-hover"
+            "/playlist/[PlaylistID]"
+          ) && "bg-gray-200 dark:bg-dark-hover"
         }`}
         onClick={() => {
           if (authStatus) {
@@ -63,7 +64,10 @@ const SideBar = (): React.ReactElement => {
           }
         }}
       >
-        {activeLink("/playlist") ? (
+        {activeLink(
+          "/playlist",
+          "/playlist/[PlaylistID]"
+        ) ? (
           <MdFeaturedPlayList size={20} />
         ) : (
           <MdOutlineFeaturedPlayList size={20} />
@@ -72,7 +76,8 @@ const SideBar = (): React.ReactElement => {
       </li>
       <li
         className={`flex items-center gap-3 p-4 transition-all hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
-          activeLink("/liked") && "dark:bg-dark-hover"
+          activeLink("/liked") &&
+          "bg-gray-200 dark:bg-dark-hover"
         }`}
         onClick={() => {
           if (authStatus) {
@@ -91,7 +96,8 @@ const SideBar = (): React.ReactElement => {
       </li>
       <li
         className={`flex items-center gap-3 p-4 transition-all hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
-          activeLink("/watch-later") && "dark:bg-dark-hover"
+          activeLink("/watch-later") &&
+          "bg-gray-200 dark:bg-dark-hover"
         }`}
         onClick={() => {
           if (authStatus) {
@@ -110,7 +116,8 @@ const SideBar = (): React.ReactElement => {
       </li>
       <li
         className={`flex items-center gap-3 p-4 transition-all hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
-          activeLink("/history") && "dark:bg-dark-hover"
+          activeLink("/history") &&
+          "bg-gray-200 dark:bg-dark-hover"
         }`}
         onClick={() => {
           if (authStatus) {

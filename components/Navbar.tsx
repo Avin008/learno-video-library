@@ -87,7 +87,7 @@ const Navbar = (): React.ReactElement => {
             </li>
           </Link>
         )}
-        {/* <li
+        <li
           className="rounded-md px-3 py-2 text-sm font-medium transition-all hover:cursor-pointer dark:text-gray-300  dark:hover:bg-dark-hover dark:hover:text-white sm:fixed sm:top-3 sm:right-5 sm:hidden md:static lg:block"
           onClick={toggleDarkMode}
         >
@@ -96,7 +96,7 @@ const Navbar = (): React.ReactElement => {
           ) : (
             <MdOutlineDarkMode size={25} />
           )}
-        </li> */}
+        </li>
       </ul>
     </div>
   );
