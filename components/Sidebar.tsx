@@ -52,7 +52,7 @@ const SideBar = (): React.ReactElement => {
         className={`flex items-center gap-3 p-4 transition-all hover:cursor-pointer dark:text-dark-text dark:hover:bg-dark-hover ${
           activeLink(
             "/playlist",
-            "/playlist/[playlistID]"
+            "/playlist/[PlaylistID]"
           ) && "dark:bg-dark-hover"
         }`}
         onClick={() => {
@@ -63,7 +63,10 @@ const SideBar = (): React.ReactElement => {
           }
         }}
       >
-        {activeLink("/playlist") ? (
+        {activeLink(
+          "/playlist",
+          "/playlist/[PlaylistID]"
+        ) ? (
           <MdFeaturedPlayList size={20} />
         ) : (
           <MdOutlineFeaturedPlayList size={20} />
