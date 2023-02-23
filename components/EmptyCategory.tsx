@@ -16,7 +16,7 @@ const EmptyCategory = ({
       <div className="relative h-16 w-16">
         <img src={img} alt="" />
       </div>
-      <p className="text-lg font-normal text-gray-200">
+      <p className="text-lg font-normal text-black dark:text-gray-200">
         {message}
       </p>
       <button
