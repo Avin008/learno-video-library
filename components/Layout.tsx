@@ -22,7 +22,7 @@ const Layout = ({
         className={`min-h-screen border border-transparent dark:bg-dark-background ${inter.variable} font-sans`}
       >
         <Navbar />
-        <main className="mt-16 grid grid-cols-12 sm:relative lg:static lg:pb-3">
+        <main className="mt-16 grid grid-cols-12 sm:relative lg:static">
           <div
             className={`${
               sidebar ? "sm:block" : "sm:hidden"
