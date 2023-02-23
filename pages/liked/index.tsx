@@ -35,20 +35,22 @@ const LikedPage = (): React.ReactElement => {
 
   return (
     <Container>
-      {authStatus && userData?.liked.length > 0 ? (
-        userData?.liked?.map((videoData: Video) => (
-          <LikedVideoCard
-            key={videoData.id}
-            videoData={videoData}
+      {authStatus ? (
+        userData?.liked.length > 0 ? (
+          userData?.liked?.map((videoData: Video) => (
+            <LikedVideoCard
+              key={videoData.id}
+              videoData={videoData}
+            />
+          ))
+        ) : (
+          <EmptyCategory
+            img="heart.png"
+            message="You Haven't Liked any videos yet!"
+            link="/"
           />
-        ))
-      ) : (
-        <EmptyCategory
-          img="heart.png"
-          message="You Haven't Liked any videos yet!"
-          link="/"
-        />
-      )}
+        )
+      ) : null}
     </Container>
   );
 };

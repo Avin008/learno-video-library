@@ -1,5 +1,5 @@
 import React from "react";
-import { MdPlaylistAdd, MdThumbUp, MdWatchLater } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 import { useRemoveFromHistory } from "../hooks";
 import { useAuthStore } from "../store";
 import { Video } from "../types";
@@ -13,7 +13,8 @@ const HistoryVideoCardMenu = ({
 }: HistoryVideoCardMenuProps): React.ReactElement => {
   const token = useAuthStore((store: any) => store.token);
 
-  const { mutate: removeFromHistory } = useRemoveFromHistory(videoData, token);
+  const { mutate: removeFromHistory } =
+    useRemoveFromHistory(videoData, token);
 
   const handleClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
@@ -26,7 +27,7 @@ const HistoryVideoCardMenu = ({
         className="flex items-center gap-2 p-2 transition-all dark:hover:bg-dark-hover"
         onClick={handleClick}
       >
-        <MdPlaylistAdd className="text-xl" /> REMOVE FROM HISTORY
+        <MdDelete className="text-xl" /> REMOVE FROM HISTORY
       </li>
     </ul>
   );

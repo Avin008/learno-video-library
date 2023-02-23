@@ -1,5 +1,5 @@
 import React from "react";
-import { MdPlaylistAdd } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 import { useRemoveFromWatchLater } from "../hooks";
 import { useAuthStore } from "../store";
 import { Video } from "../types";
@@ -28,7 +28,8 @@ const WatchLaterVideoCardMenu = ({
         className="flex items-center gap-2 p-2 transition-all dark:hover:bg-dark-hover"
         onClick={handleClick}
       >
-        <MdPlaylistAdd className="text-xl" /> REMOVE FROM WATCH LATER
+        <MdDelete className="text-xl" /> REMOVE FROM WATCH
+        LATER
       </li>
     </ul>
   );

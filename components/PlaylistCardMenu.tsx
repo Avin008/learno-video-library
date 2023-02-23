@@ -1,5 +1,5 @@
 import React from "react";
-import { MdPlaylistAdd, MdThumbUp, MdWatchLater } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 import { useRemovePlaylist } from "../hooks";
 import { User } from "../types";
 
@@ -12,7 +12,8 @@ const PlaylistCardMenu = ({
   userData,
   playlistData,
 }: PlaylistCardMenuProps): React.ReactElement => {
-  const { mutate: removePlaylist } = useRemovePlaylist(playlistData);
+  const { mutate: removePlaylist } =
+    useRemovePlaylist(playlistData);
 
   const handleClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
@@ -25,7 +26,8 @@ const PlaylistCardMenu = ({
         className="flex items-center gap-2 p-2 transition-all dark:hover:bg-dark-hover"
         onClick={handleClick}
       >
-        <MdPlaylistAdd className="text-xl" /> REMOVE FROM PLAYLIST
+        <MdDelete className="text-xl" /> REMOVE FROM
+        PLAYLIST
       </li>
     </ul>
   );
