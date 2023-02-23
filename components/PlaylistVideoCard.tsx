@@ -57,25 +57,22 @@ const PlaylistVideoCard = ({
           </div>
         </div>
         <div className="col-span-5 space-y-1">
-          <h1 className="text-sm font-semibold leading-5 text-gray-300">
+          <h1 className="text-sm font-semibold leading-5 dark:text-gray-300">
             {videoData.title.length > 50
-              ? `${videoData.title.slice(
-                  0,
-                  50
-                )}..`
+              ? `${videoData.title.slice(0, 50)}..`
               : videoData.title}
           </h1>
-          <h2 className="text-sm font-semibold text-gray-400">
+          <h2 className="text-sm font-semibold dark:text-gray-400">
             {videoData.channelName}
           </h2>
         </div>
-        <div className="col-span-1 flex items-start justify-end bg-gray-800">
+        <div className="col-span-1 flex items-start justify-end">
           <span
             className="hover:bg-hover rounded-full p-1 hover:cursor-pointer"
             onClick={toggleVideoOptions}
           >
             <MdMoreVert
-              className="rounded-full text-gray-200"
+              className="rounded-full dark:text-gray-200"
               size={25}
             />
           </span>

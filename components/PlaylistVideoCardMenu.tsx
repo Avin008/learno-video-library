@@ -24,9 +24,9 @@ const PlaylistCardMenu = ({
   };
 
   return (
-    <ul className="absolute bottom-1 right-2 z-10 h-fit w-fit space-y-1 border border-gray-600 bg-opacity-95 py-1 text-xs text-gray-200 shadow-md transition-all dark:border-dark-border dark:bg-dark-background">
+    <ul className="absolute bottom-1 right-2 z-10 h-fit w-fit space-y-1 border border-gray-600 bg-white bg-opacity-95 py-1 text-xs shadow-md transition-all dark:border-dark-border dark:bg-dark-background dark:text-gray-200">
       <li
-        className="flex items-center gap-2 p-2 transition-all hover:bg-dark-hover"
+        className="flex items-center gap-2 p-2 transition-all hover:bg-gray-200 dark:hover:bg-dark-hover"
         onClick={handleClick}
       >
         <MdDelete className="text-xl" /> REMOVE FROM
