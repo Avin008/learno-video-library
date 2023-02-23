@@ -29,9 +29,9 @@ const PlaylistPage = (): React.ReactElement => {
     }
   }, [authStatus]);
 
-  let playlistID = router.query.playlistID as string;
+  const playlistID = router.query.PlaylistID as string;
 
-  let playlistData =
+  const playlistData =
     isReady &&
     userData?.playlist?.find(
       (x: Playlist) => x.id === playlistID
