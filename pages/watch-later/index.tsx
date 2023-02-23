@@ -35,17 +35,19 @@ const WatchLaterPage = (): React.ReactElement => {
 
   return (
     <Container>
-      {authStatus && userData?.watchLater?.length > 0 ? (
-        userData?.watchLater?.map((x: Video) => (
-          <WatchLaterVideoCard key={x.id} videoData={x} />
-        ))
-      ) : (
-        <EmptyCategory
-          img="clock.png"
-          link="/"
-          message="You Haven't Added any videos to watch later yet!"
-        />
-      )}
+      {authStatus ? (
+        userData?.watchLater?.length > 0 ? (
+          userData?.watchLater?.map((x: Video) => (
+            <WatchLaterVideoCard key={x.id} videoData={x} />
+          ))
+        ) : (
+          <EmptyCategory
+            img="clock.png"
+            link="/"
+            message="You Haven't Added any videos to watch later yet!"
+          />
+        )
+      ) : null}
     </Container>
   );
 };

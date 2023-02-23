@@ -35,21 +35,23 @@ const PlaylistPage = (): React.ReactElement => {
 
   return (
     <Container>
-      {authStatus && userData?.playlist.length > 0 ? (
-        userData?.playlist?.map((x: Playlist) => (
-          <PlaylistCard
-            key={x.id}
-            playlistData={x}
-            userData={userData}
+      {authStatus ? (
+        userData?.playlist.length > 0 ? (
+          userData?.playlist?.map((x: Playlist) => (
+            <PlaylistCard
+              key={x.id}
+              playlistData={x}
+              userData={userData}
+            />
+          ))
+        ) : (
+          <EmptyCategory
+            img="subscription.png"
+            link="/"
+            message="Your Playlist is Empty"
           />
-        ))
-      ) : (
-        <EmptyCategory
-          img="subscription.png"
-          link="/"
-          message="Your Playlist is Empty"
-        />
-      )}
+        )
+      ) : null}
     </Container>
   );
 };

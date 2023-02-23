@@ -35,20 +35,22 @@ const HistoryPage = (): React.ReactElement => {
 
   return (
     <Container>
-      {authStatus && userData?.history?.length > 0 ? (
-        userData?.history?.map((videoData: Video) => (
-          <HistoryVideoCard
-            key={videoData.id}
-            videoData={videoData}
+      {authStatus ? (
+        userData?.history?.length > 0 ? (
+          userData?.history?.map((videoData: Video) => (
+            <HistoryVideoCard
+              key={videoData.id}
+              videoData={videoData}
+            />
+          ))
+        ) : (
+          <EmptyCategory
+            img="history.png"
+            message="History is Empty"
+            link="/"
           />
-        ))
-      ) : (
-        <EmptyCategory
-          img="history.png"
-          message="History is Empty"
-          link="/"
-        />
-      )}
+        )
+      ) : null}
     </Container>
   );
 };
