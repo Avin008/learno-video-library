@@ -4,6 +4,7 @@ import {
   MdOutlineDarkMode,
   MdLightMode,
   MdOutlineMenu,
+  MdAccountCircle,
 } from "react-icons/md";
 import { useAuth } from "../hooks";
 import {
@@ -65,25 +66,25 @@ const Navbar = (): React.ReactElement => {
 
       <ul
         className="flex items-center
-       gap-6 text-base font-medium transition-all"
+       gap-4 text-base font-medium transition-all"
       >
         {loading ? (
           <ClipLoader color="gray" size={25} />
         ) : status ? (
           <li
-            className={`rounded-md bg-dark-primary px-3 py-2 text-sm font-medium text-white hover:cursor-pointer`}
+            className={`flex items-center gap-1 rounded-md border border-dark-border px-3 py-2 text-sm font-medium text-white shadow-sm hover:cursor-pointer`}
             onClick={removeAuth}
           >
-            LOGOUT
+            <MdAccountCircle size={20} /> Logout
           </li>
         ) : (
           <Link href="/login">
             <li
-              className={`rounded-md bg-dark-primary px-3 py-2 text-sm font-medium text-white hover:cursor-pointer ${
+              className={`flex items-center gap-1 rounded-md border border-dark-border px-3 py-2 text-sm font-medium text-white shadow-sm hover:cursor-pointer ${
                 router.pathname === "/login" && ""
               }`}
             >
-              LOGIN
+              <MdAccountCircle size={20} /> Login
             </li>
           </Link>
         )}
