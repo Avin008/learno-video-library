@@ -35,7 +35,7 @@ const PlaylistCard = ({
             src={
               playlistData.videos[0]
                 ? playlistData.videos[0].thumbnail
-                : "https://firebasestorage.googleapis.com/v0/b/video-library-app-3e865.appspot.com/o/empty%20playlist.png?alt=media&token=6e759c5d-de17-4c61-a130-d63a84c2763c"
+                : "https://firebasestorage.googleapis.com/v0/b/video-library-app-3e865.appspot.com/o/EMPTY%20PLAYLIST.png?alt=media&token=c630f904-687b-4259-b374-9090d48f5adf&_gl=1*qm821y*_ga*MTUxNzkzODU2MS4xNjY2NzAyMDQ2*_ga_CW55HF8NVT*MTY4NTY5NDczMi4zMS4xLjE2ODU2OTQ3NzIuMC4wLjA."
             }
             alt=""
             fill
