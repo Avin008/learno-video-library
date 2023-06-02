@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { MdMoreVert } from "react-icons/md";
-import { CreatePlaylistModal, VideoCardMenu } from "../components";
+import {
+  CreatePlaylistModal,
+  VideoCardMenu,
+} from "../components";
 import { useRouter } from "next/router";
 import { User, Video } from "../types";
 import { useAddToHistory, useToggle } from "../hooks";
@@ -15,13 +18,19 @@ const VideoCard = ({
   videoData,
   userData,
 }: VideoCardProps): React.ReactElement => {
-  const { show: showVideoOptions, toggle: toggleShowVideoOptions } =
-    useToggle();
+  const {
+    show: showVideoOptions,
+    toggle: toggleShowVideoOptions,
+  } = useToggle();
 
-  const { show: showPlaylistModal, toggle: toggleShowPlaylistModal } =
-    useToggle();
+  const {
+    show: showPlaylistModal,
+    toggle: toggleShowPlaylistModal,
+  } = useToggle();
 
-  const authStatus = useAuthStore((store: any) => store.authStatus);
+  const authStatus = useAuthStore(
+    (store: any) => store.authStatus
+  );
 
   const router = useRouter();
   const {
@@ -47,7 +56,9 @@ const VideoCard = ({
         />
         {showVideoOptions && (
           <VideoCardMenu
-            toggleShowPlaylistModal={toggleShowPlaylistModal}
+            toggleShowPlaylistModal={
+              toggleShowPlaylistModal
+            }
             userData={userData}
             videoData={videoData}
           />
@@ -66,8 +77,8 @@ const VideoCard = ({
         </div>
         <div className="col-span-5 space-y-1">
           <h1 className="text-sm font-semibold leading-5 dark:text-gray-300">
-            {videoData.title.length > 50
-              ? `${videoData.title.slice(0, 50)}..`
+            {videoData.title.length > 40
+              ? `${videoData.title.slice(0, 40)}..`
               : videoData.title}
           </h1>
           <h2 className="text-sm font-semibold dark:text-gray-400">
@@ -79,7 +90,10 @@ const VideoCard = ({
             className="rounded-full p-1 hover:cursor-pointer dark:hover:bg-dark-hover"
             onClick={toggleShowVideoOptions}
           >
-            <MdMoreVert className="rounded-full dark:text-gray-200" size={25} />
+            <MdMoreVert
+              className="rounded-full dark:text-gray-200"
+              size={25}
+            />
           </span>
         </div>
       </div>
