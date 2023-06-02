@@ -10,23 +10,33 @@ const LoginPage = (): React.ReactElement => {
     password: "",
   });
 
-  const addAuth = useAuthStore((store: any) => store.addAuth);
+  const addAuth = useAuthStore(
+    (store: any) => store.addAuth
+  );
 
   const router = useRouter();
 
-  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const inputHandler = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const { name, value } = e.target;
     setUserData((prev) => ({ ...prev, [name]: value }));
   };
 
   const guestLogin = () => {
-    setUserData({ email: "johndoe@gmail.com", password: "john@test@1234" });
+    setUserData({
+      email: "johndoe@gmail.com",
+      password: "john@test@1234",
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await loginUser(userData.email, userData.password);
+      const res = await loginUser(
+        userData.email,
+        userData.password
+      );
       addAuth(res.user.uid);
       router.push("/");
     } catch (error) {
@@ -35,13 +45,18 @@ const LoginPage = (): React.ReactElement => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center sm:col-span-12 lg:col-span-10">
+    <div className="mt-10 flex justify-center sm:col-span-12 lg:col-span-10">
       <form onSubmit={handleSubmit}>
-        <div className="m-auto h-fit w-80 space-y-4 rounded-md border p-6 shadow-md dark:border-dark-border dark:bg-dark-background">
-          <h1 className="text-2xl font-semibold dark:text-dark-text">Login</h1>
+        <div className="m-auto h-fit space-y-4 rounded-md border p-6 shadow-md dark:border-dark-border dark:bg-dark-background sm:w-80 md:w-96">
+          <h1 className="text-2xl font-semibold dark:text-dark-text">
+            Login
+          </h1>
           <div className="space-y-3">
             <span className="flex flex-col space-y-1">
-              <label className="dark:text-dark-text" htmlFor="email">
+              <label
+                className="dark:text-dark-text"
+                htmlFor="email"
+              >
                 Email
               </label>
               <input
@@ -56,7 +71,10 @@ const LoginPage = (): React.ReactElement => {
               />
             </span>
             <span className="flex flex-col space-y-1">
-              <label className="dark:text-dark-text" htmlFor="password">
+              <label
+                className="dark:text-dark-text"
+                htmlFor="password"
+              >
                 Password
               </label>
               <input
@@ -73,11 +91,11 @@ const LoginPage = (): React.ReactElement => {
           </div>
           <div className="space-y-2 pt-3">
             <span className="flex flex-col space-y-2">
-              <button className="rounded-sm border p-2 font-semibold dark:border-dark-border dark:bg-dark-primary dark:text-dark-text">
+              <button className="border-md rounded-sm p-2 font-semibold dark:border-dark-border dark:bg-dark-primary dark:text-dark-text">
                 Login
               </button>
               <button
-                className="rounded-sm bg-yellow-800 p-2 font-semibold text-white hover:bg-opacity-90 active:opacity-95"
+                className="rounded-md border border-dark-primary p-2 font-semibold text-white hover:bg-opacity-90 active:opacity-95"
                 onClick={guestLogin}
               >
                 Login As Guest
