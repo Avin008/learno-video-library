@@ -29,6 +29,9 @@ export default function Home() {
 
   return (
     <div className="space-y-3 px-2 sm:col-span-12 lg:col-span-10">
+      <head>
+        <title>Home | Learno</title>
+      </head>
       {!isvideosLoading && (
         <CategoryChips
           videoData={videos}

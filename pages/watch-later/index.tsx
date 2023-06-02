@@ -35,6 +35,9 @@ const WatchLaterPage = (): React.ReactElement => {
 
   return (
     <Container>
+      <head>
+        <title>Watch Later | Learno</title>
+      </head>
       {authStatus ? (
         userData?.watchLater?.length > 0 ? (
           userData?.watchLater?.map((x: Video) => (

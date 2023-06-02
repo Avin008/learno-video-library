@@ -35,6 +35,9 @@ const PlaylistPage = (): React.ReactElement => {
 
   return (
     <Container>
+      <head>
+        <title>Playlist | Learno</title>
+      </head>
       {authStatus ? (
         userData?.playlist.length > 0 ? (
           userData?.playlist?.map((x: Playlist) => (

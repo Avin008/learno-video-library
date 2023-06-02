@@ -39,6 +39,9 @@ const PlaylistPage = (): React.ReactElement => {
 
   return (
     <div className="sm:col-span-12 lg:col-span-10">
+      <head>
+        <title>Playlist | Learno</title>
+      </head>
       {isUserDataLoading && <LoadingSpinner />}
       {!isUserDataLoading && (
         <Container>

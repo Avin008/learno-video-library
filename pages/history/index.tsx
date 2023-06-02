@@ -35,6 +35,9 @@ const HistoryPage = (): React.ReactElement => {
 
   return (
     <Container>
+      <head>
+        <title>History | Learno</title>
+      </head>
       {authStatus ? (
         userData?.history?.length > 0 ? (
           userData?.history?.map((videoData: Video) => (

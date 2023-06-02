@@ -35,6 +35,9 @@ const LikedPage = (): React.ReactElement => {
 
   return (
     <Container>
+      <head>
+        <title>Liked Videos | Learno</title>
+      </head>
       {authStatus ? (
         userData?.liked.length > 0 ? (
           userData?.liked?.map((videoData: Video) => (
