@@ -25,7 +25,7 @@ const Searchbar = () => {
             setSearchKey(e.target.value);
           }}
         />
-        <span className="absolute right-1 rounded-md bg-dark-primary p-1 text-gray-200 dark:bg-dark-hover">
+        <span className="absolute right-1 rounded-md p-1 dark:text-gray-300">
           <MdSearch size={25} />
         </span>
       </div>
