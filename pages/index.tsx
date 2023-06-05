@@ -9,8 +9,9 @@ import {
   useGetUserData,
 } from "../hooks";
 import { Video } from "../types";
-import { useState } from "react";
-import { filterByCategory } from "../utility";
+import { useEffect, useState } from "react";
+import useGetVideosData from "../hooks/useGetVideosData";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function Home() {
   const {
@@ -26,6 +27,29 @@ export default function Home() {
   } = useGetUserData();
 
   const [category, setCategory] = useState<string>("All");
+  const queryClient = useQueryClient();
+  const [initialRefech, setInitialRefetch] =
+    useState<boolean>(false);
+
+  const {
+    data: videoData,
+    isInitialLoading: isLoading,
+    hasNextPage,
+    isFetching,
+    refetch,
+    ref,
+  } = useGetVideosData(category);
+
+  const categorySetter = (category: string): void => {
+    setCategory(category);
+    setInitialRefetch(true);
+  };
+
+  useEffect(() => {
+    if (initialRefech) {
+      refetch();
+    }
+  }, [category, initialRefech]);
 
   return (
     <div className="space-y-3 px-2 sm:col-span-12 lg:col-span-10">
@@ -33,22 +57,33 @@ export default function Home() {
         <CategoryChips
           videoData={videos}
           category={category}
-          categorySetterFunc={setCategory}
+          categorySetterFunc={categorySetter}
         />
       )}
+
       <Container>
         {isvideosLoading && <LoadingSpinner />}
         {!isvideosLoading &&
-          filterByCategory(videos, category).map(
-            (videoData: Video) => (
-              <VideoCard
-                key={videoData.id}
-                videoData={videoData}
-                userData={userData}
-              />
-            )
-          )}
+          videoData?.pages.map((x: any) => (
+            <>
+              {x.docs.map((video: Video) => (
+                <VideoCard
+                  key={video.id}
+                  videoData={video}
+                  userData={userData}
+                />
+              ))}
+            </>
+          ))}
       </Container>
+      {hasNextPage && (
+        <div
+          ref={ref}
+          className="flex w-full justify-center text-gray-400"
+        >
+          Loading more...
+        </div>
+      )}
     </div>
   );
 }
