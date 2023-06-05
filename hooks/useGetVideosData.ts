@@ -13,6 +13,13 @@ import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 const useGetVideosData = (category: string) => {
+  const categories = [
+    "Talks",
+    "React",
+    "Lofi",
+    "Javascript",
+  ];
+
   const { inView, ref } = useInView();
   const {
     data,
@@ -29,7 +36,13 @@ const useGetVideosData = (category: string) => {
       const q = query(
         collectionRef,
         orderBy("category"),
-        where("category", "!=", category),
+        where(
+          "category",
+          "not-in",
+          categories.includes(category)
+            ? categories.filter((x) => x !== category)
+            : ["no-filter"]
+        ),
         startAfter(pageParam),
         limit(9)
       );
