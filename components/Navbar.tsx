@@ -72,7 +72,7 @@ const Navbar = (): React.ReactElement => {
           <ClipLoader color="gray" size={25} />
         ) : status ? (
           <li
-            className={`flex items-center gap-1 rounded-md border border-dark-border px-3 py-2 text-sm font-medium text-white shadow-sm hover:cursor-pointer`}
+            className={`flex items-center gap-1 rounded-md border border-dark-border px-3 py-2 text-sm font-medium shadow-sm hover:cursor-pointer dark:text-white`}
             onClick={removeAuth}
           >
             <MdAccountCircle size={20} /> Logout
@@ -80,7 +80,7 @@ const Navbar = (): React.ReactElement => {
         ) : (
           <Link href="/login">
             <li
-              className={`flex items-center gap-1 rounded-md border border-dark-border px-3 py-2 text-sm font-medium text-white shadow-sm hover:cursor-pointer ${
+              className={`flex items-center gap-1 rounded-md border border-dark-border px-3 py-2 text-sm font-medium shadow-sm hover:cursor-pointer dark:text-white ${
                 router.pathname === "/login" && ""
               }`}
             >
