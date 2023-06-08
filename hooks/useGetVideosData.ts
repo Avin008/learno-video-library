@@ -44,7 +44,7 @@ const useGetVideosData = (category: string) => {
             : ["no-filter"]
         ),
         startAfter(pageParam),
-        limit(9)
+        limit(6)
       );
       const docRef = (await getDocs(q)).docs?.slice(-1)[0];
       const docs = (await getDocs(q)).docs.map((videos) =>
