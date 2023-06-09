@@ -64,9 +64,7 @@ export default function Home() {
 
       <Container>
         {isvideosLoading && <LoadingSpinner />}
-        {isRefetching && <LoadingSpinner />}
         {!isvideosLoading &&
-          !isRefetching &&
           videoData?.pages.map((x: any) => (
             <>
               {x.docs.map((video: Video) => (
