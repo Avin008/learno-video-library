@@ -6,6 +6,7 @@ import {
   signupUser,
 } from "../services/firebaseFunc";
 import { useAuthStore } from "../store";
+import { toast } from "react-hot-toast";
 
 const SignupPage = (): React.ReactElement => {
   const [userData, setUserData] = useState({
@@ -44,6 +45,7 @@ const SignupPage = (): React.ReactElement => {
       );
       addAuth(res.user.uid);
       router.push("/");
+      toast.success("user created successfully");
     } catch (error) {
       console.log(error);
     }

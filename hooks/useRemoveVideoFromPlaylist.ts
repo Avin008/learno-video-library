@@ -6,6 +6,7 @@ import { removeVideoFromPlaylist } from "../services/firebaseFunc";
 import { useAuthStore } from "../store";
 import { Playlist, Video } from "../types";
 import removeVideoFromPlaylistFunc from "../utility/removeVideoFromPlaylist";
+import { toast } from "react-hot-toast";
 
 const useRemoveVideoFromPlaylist = (
   userPlaylistData: Playlist[],
@@ -13,28 +14,26 @@ const useRemoveVideoFromPlaylist = (
 ) => {
   const queryClient = useQueryClient();
 
-  const token = useAuthStore(
-    (store: any) => store.token
-  );
+  const token = useAuthStore((store: any) => store.token);
 
-  const { mutate, isLoading, isError } =
-    useMutation(
-      async (playlistData: Playlist) => {
-        return removeVideoFromPlaylist(
-          token,
-          removeVideoFromPlaylistFunc(
-            userPlaylistData,
-            playlistData,
-            videoData
-          )
-        );
+  const { mutate, isLoading, isError } = useMutation(
+    async (playlistData: Playlist) => {
+      return removeVideoFromPlaylist(
+        token,
+        removeVideoFromPlaylistFunc(
+          userPlaylistData,
+          playlistData,
+          videoData
+        )
+      );
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["user"]);
+        toast.success("Removed from Playlist");
       },
-      {
-        onSuccess: () => {
-          queryClient.invalidateQueries(["user"]);
-        },
-      }
-    );
+    }
+  );
 
   return { mutate, isLoading, isError };
 };

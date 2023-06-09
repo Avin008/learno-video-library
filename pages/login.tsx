@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { loginUser } from "../services/firebaseFunc";
 import { useAuthStore } from "../store";
+import { toast } from "react-hot-toast";
 
 const LoginPage = (): React.ReactElement => {
   const [userData, setUserData] = useState({
@@ -39,6 +40,7 @@ const LoginPage = (): React.ReactElement => {
       );
       addAuth(res.user.uid);
       router.push("/");
+      toast.success("user loggedin successfully");
     } catch (error) {
       console.log(error);
     }
