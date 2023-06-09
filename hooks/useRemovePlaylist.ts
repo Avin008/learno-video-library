@@ -1,6 +1,10 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { removePlaylist } from "../services/firebaseFunc";
 import { useAuthStore } from "../store";
+import { toast } from "react-hot-toast";
 
 const useRemovePlaylist = (playlistObj: any) => {
   const queryClient = useQueryClient();
@@ -14,6 +18,7 @@ const useRemovePlaylist = (playlistObj: any) => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["user"]);
+        toast.success("Playlist Removed");
       },
     }
   );

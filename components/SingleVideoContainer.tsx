@@ -44,6 +44,9 @@ const SingleVideoContainer = (): React.ReactElement => {
 
   return (
     <div className="mt-2 grid gap-5 px-2 sm:col-span-12 sm:grid-cols-1 md:grid-cols-8 lg:col-span-10">
+      <head>
+        <title>Video | Learno</title>
+      </head>
       {isVideoDataLoading ? (
         <LoadingSpinner />
       ) : (

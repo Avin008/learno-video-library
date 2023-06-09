@@ -1,8 +1,15 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { addToLiked } from "../services/firebaseFunc";
 import { Video } from "../types";
+import { toast } from "react-hot-toast";
 
-const useAddToLiked = (videoData: Video, userID: string | undefined) => {
+const useAddToLiked = (
+  videoData: Video,
+  userID: string | undefined
+) => {
   const queryClient = useQueryClient();
 
   const { mutate, isLoading, isError } = useMutation(
@@ -12,6 +19,7 @@ const useAddToLiked = (videoData: Video, userID: string | undefined) => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["user"]);
+        toast.success("Added to Liked");
       },
     }
   );

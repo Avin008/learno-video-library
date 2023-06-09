@@ -2,6 +2,7 @@ import Navbar from "./Navbar";
 import SideBar from "./Sidebar";
 import { Inter } from "@next/font/google";
 import { useSidebarStore, useThemeStore } from "../store";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,6 +33,7 @@ const Layout = ({
           </div>
           {children}
         </main>
+        <Toaster position="bottom-center" />
       </div>
     </div>
   );
