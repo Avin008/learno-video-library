@@ -52,6 +52,10 @@ export default function Home() {
     }
   }, [category, initialRefech]);
 
+  useEffect(() => {
+    scrollTo({ top: 0 });
+  }, [category]);
+
   return (
     <div className="space-y-3 px-2 sm:col-span-12 lg:col-span-10">
       {!isvideosLoading && (
