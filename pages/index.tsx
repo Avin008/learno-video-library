@@ -36,6 +36,7 @@ export default function Home() {
     isInitialLoading: isLoading,
     hasNextPage,
     isFetching,
+    isRefetching,
     refetch,
     ref,
   } = useGetVideosData(category);
@@ -63,7 +64,9 @@ export default function Home() {
 
       <Container>
         {isvideosLoading && <LoadingSpinner />}
+        {isRefetching && <LoadingSpinner />}
         {!isvideosLoading &&
+          !isRefetching &&
           videoData?.pages.map((x: any) => (
             <>
               {x.docs.map((video: Video) => (
