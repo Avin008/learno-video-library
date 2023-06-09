@@ -26,8 +26,7 @@ const PlaylistCardMenu = ({
         className="flex items-center gap-2 p-2 transition-all hover:bg-gray-200 dark:hover:bg-dark-hover"
         onClick={handleClick}
       >
-        <MdDelete className="text-xl" /> REMOVE FROM
-        PLAYLIST
+        <MdDelete className="text-xl" /> REMOVE PLAYLIST
       </li>
     </ul>
   );
